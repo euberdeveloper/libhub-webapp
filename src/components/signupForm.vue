@@ -8,6 +8,7 @@
     
       <v-text-field
         v-model="name"
+        id="UserName"
         :rules="nameRules"
         :counter="23"
         label="Username"
@@ -16,6 +17,7 @@
 
       <v-text-field
         v-model="email"
+        id="UserEmail"
         :rules="emailRules"
         label="E-mail"
         required
@@ -84,6 +86,11 @@ export default {
     methods: {
       validate () {
         this.$refs.form.validate()
+        //console.log(this.$refs.form.$el["UserName"].value)
+        //this.$store.commit('set-email',this.$refs.form.$el["UserName"].value)
+        this.$store.state.user_email = this.$refs.form.$el["UserEmail"].value
+        this.$store.state.user_name = this.$refs.form.$el["UserName"].value
+        console.log(this.$store.state.user_email)
       },
       reset () {
         this.$refs.form.reset()
