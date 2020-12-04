@@ -15,9 +15,9 @@
 
       <v-spacer></v-spacer>
       
-      <v-btn to="/">
+      <v-btn to="/" color="#81D4FA" elevation="0" tile>
       
-        <span class="mr-2">Home</span>
+        <span class="mr-2">Home </span>
         <v-icon>mdi-home-circle</v-icon>
       </v-btn>
       

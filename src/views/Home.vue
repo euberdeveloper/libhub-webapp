@@ -16,9 +16,9 @@
 
       <v-spacer></v-spacer>
       
-      <v-btn to="login">
+      <v-btn to="login" color="#81D4FA" elevation="0" tile>
       
-        <span class="mr-2">Login</span>
+        <span class="mr-2">Login </span>
         <v-icon>mdi-account-circle</v-icon>
       </v-btn>
       
