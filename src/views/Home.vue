@@ -4,7 +4,7 @@
     <v-app-bar app color="#81D4FA">
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="Lib-hub Logo"
           class="shrink mr-2"
           contain
           src="@/assets/logo.png"
@@ -16,7 +16,7 @@
 
       <v-spacer></v-spacer>
       
-      <v-btn to="login" color="#81D4FA" elevation="0" tile>
+      <v-btn to="login" color="#81D4FA"  elevation="0" tile>
       
         <span class="mr-2">Login </span>
         <v-icon>mdi-account-circle</v-icon>

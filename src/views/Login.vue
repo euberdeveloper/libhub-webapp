@@ -3,7 +3,7 @@
     <v-app-bar app color="#81D4FA">
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="Lib-hub Logo"
           class="shrink mr-2"
           contain
           src="@/assets/logo.png"
