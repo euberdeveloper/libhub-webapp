@@ -54,7 +54,7 @@
 
 <script>
 import AboutUs from './components/AboutUs.vue';
-import SignupForm from './components/signupForm.vue';
+import SignupForm from './components/SignupForm.vue';
 
 
 export default {
