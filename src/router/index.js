@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/default/Home.vue'
+import HomeBar from '../views/bars/HomeBar.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +9,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    components:{
+      default: Home,
+      bar: HomeBar
+    } 
   },
   {
     path: '/login',
@@ -16,7 +20,12 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    component: {
+      default: () => import(/* webpackChunkName: "login" */ '../views/default/Login.vue'),
+      bar: () => import(/* webpackChunkName: "login" */ '../views/bars/HomeBar.vue')
+    }
+      
+    
   },
   {
     path: '/dash/:id',
@@ -24,7 +33,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Dashboard.vue')
+    component: {
+      default: () => import(/* webpackChunkName: "dashboard" */ '../views/default/Dashboard.vue'),
+      bar: () => import(/* webpackChunkName: "dashboard" */ '../views/bars/AppBar.vue')
+    }
   }
 ]
 

@@ -24,9 +24,11 @@
     </v-app-bar>
 
     <v-main >
-      <v-container align-content-lg >
-        <v-card elevation-5 class="login-form-style central-align-style">
-          <LogInForm/>
+      <v-container align-content-lg fill-height fluid>
+        <v-card elevation-5 class="login-form-style central-align-style" >
+          
+              <LogInForm/>
+           
         </v-card>
       </v-container>
 </v-main>
