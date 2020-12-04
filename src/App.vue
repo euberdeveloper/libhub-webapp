@@ -54,7 +54,7 @@
 
 <script>
 import AboutUs from './components/AboutUs.vue';
-import SignupForm from './components/SignupForm.vue';
+import SignupForm from './components/signupForm.vue';
 
 
 export default {
@@ -66,7 +66,7 @@ export default {
   },
 
   data: () => ({
-    //
+    // 
   }),
 };
 </script>
