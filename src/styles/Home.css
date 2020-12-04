@@ -7,13 +7,8 @@
 .signup-form-style {
     align-items: center;
     margin-left: 20%;
-    
 }
 
-.login-form-style{
-    max-width: 50%;
-    width: 50%;
-    max-height: 50%;
-    height: 50%;
-    
+.login-form-style {
+    max-width: 350px;
 }
