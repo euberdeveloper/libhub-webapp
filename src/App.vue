@@ -40,7 +40,7 @@
               </v-col>
               
               <v-col>
-                <v-card elevation-5 class="signup-form-style">
+                <v-card elevation-5 class="signup-form-style" title="SIGN UP">
                   <SignupForm/>
                 </v-card>
               </v-col>
