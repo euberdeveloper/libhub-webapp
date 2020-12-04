@@ -5,7 +5,7 @@
 
     <v-main>
         <v-container align-content-lg >
-            
+            {{ $route.params.id }}
         </v-container>
     </v-main>
 
@@ -20,6 +20,9 @@ export default {
     name: 'Dashboard',
     components:{
         NavigationDrawer,
-    }
+    },
+    props: [
+        'id'
+    ]
 }
 </script>

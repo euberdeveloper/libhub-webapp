@@ -74,7 +74,7 @@ export default {
         /*
          #TODO Log in user
         */
-        this.$router.push("/dash")
+        this.$router.push("/dash/"+this.name)
       },
       reset () {
         this.$refs.form.reset()
