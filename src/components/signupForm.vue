@@ -1,0 +1,93 @@
+<template>
+  <v-container >
+    <v-form
+      ref="form"
+      v-model="valid"
+      lazy-validation
+    >
+    
+      <v-text-field
+        v-model="name"
+        :rules="nameRules"
+        :counter="23"
+        label="Username"
+        required
+      ></v-text-field>
+
+      <v-text-field
+        v-model="email"
+        :rules="emailRules"
+        label="E-mail"
+        required
+      ></v-text-field>
+
+      <v-text-field
+        v-model="password"
+        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+        :passwordRules="[passwordRules.required, passwordRules.min]"
+        :type="show1 ? 'text' : 'password'"
+        name="input-10-1"
+        label="Password"
+        counter
+        hint="At least 8 characters"
+        @click:append="show1 = !show1"
+        required
+      ></v-text-field>
+
+      <v-btn
+        :disabled="!valid"
+        color="success"
+        class="mr-4"
+        @click="validate"
+      >
+        Sign in
+      </v-btn>
+
+      <v-btn
+        color="error"
+        class="mr-4"
+        @click="reset"
+      >
+        Reset Form
+      </v-btn>
+      
+    </v-form>
+  </v-container>
+</template>
+
+<script>
+export default {
+    name: 'signupForm',
+    data () {
+      return {
+        valid: true,
+        show1: false,
+        show2: true,
+        password: '',
+        passwordRules: {
+          required: value => !!value || 'Required.',
+          min: v => v.length >= 8 || 'Min 8 characters',
+          emailMatch: () => (`The email and password you entered don't match`),
+        },
+        name: '',
+        nameRules: [
+        v => !!v || 'Username is required',
+        v => (v && v.length <= 23) || 'Username must be less than 23 characters',
+        ],
+        email: '',
+        emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        ],
+      }
+    },
+    methods: {
+      validate () {
+        this.$refs.form.validate()
+      },
+      reset () {
+        this.$refs.form.reset()
+      }
+    },
+}
+</script>
