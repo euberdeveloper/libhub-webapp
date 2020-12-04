@@ -32,15 +32,15 @@
     <v-main>
       <br>
       
-      <v-container >
+      <v-container align-content-lg >
         
-            <v-row no-gutters class="signup-style">
+            <v-row   class="signup-style">
               <v-col>
                 <AboutUs/>
               </v-col>
               
               <v-col>
-                <v-card elevation-5>
+                <v-card elevation-5 class="signup-form-style">
                   <SignupForm/>
                 </v-card>
               </v-col>
@@ -71,4 +71,6 @@ export default {
 };
 </script>
 
+<style>
 
+</style>
