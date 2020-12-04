@@ -1,11 +1,12 @@
 <template>
   <v-app>
-    <v-app-bar app color="#81D4FA">
-      <router-view name="bar"/>
-    </v-app-bar>
+
+    <router-view name="bar"/>
+
     <v-main>
       <router-view/>
     </v-main>
+    
   </v-app>
 </template>
 

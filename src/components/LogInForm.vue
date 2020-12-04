@@ -1,50 +1,58 @@
 <template>
-  <v-form ref="form" v-model="valid" lazy-validation style="height: 100%">
-    <v-container fill-height>
-      <v-row align="center">
-        <v-col>
-          <v-text-field
-            v-model="name"
-            id="UserName"
-            :rules="nameRules"
-            :counter="23"
-            label="Username"
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
+  <v-card>
+    <v-card-title>
+      <span class="headline">Login</span>
+    </v-card-title>
+    <v-card-text>
+      <v-form ref="form" v-model="valid" lazy-validation style="height: 100%">
+        <v-container fill-height>
+          <v-row align="center">
+            <v-col>
+              <v-text-field
+                v-model="name"
+                id="UserName"
+                :rules="nameRules"
+                :counter="23"
+                label="Username"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
 
-      <v-row align="center">
-        <v-col>
-          <v-text-field
-            v-model="password"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :passwordRules="[passwordRules.required, passwordRules.min]"
-            :type="show1 ? 'text' : 'password'"
-            name="input-10-1"
-            label="Password"
-            @click:append="show1 = !show1"
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
+          <v-row align="center">
+            <v-col>
+              <v-text-field
+                v-model="password"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :passwordRules="[passwordRules.required, passwordRules.min]"
+                :type="show1 ? 'text' : 'password'"
+                name="input-10-1"
+                label="Password"
+                @click:append="show1 = !show1"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row align="center">
+            <v-col>
+              <v-btn
+                :disabled="!valid"
+                color="success"
+                class="mr-4"
+                @click="validate"
+              >
+                Log in
+              </v-btn>
 
-      <v-row align="center">
-        <v-col>
-          <v-btn
-            :disabled="!valid"
-            color="success"
-            class="mr-4"
-            @click="validate"
-          >
-            Log in
-          </v-btn>
-
-          <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-form>
+              <v-btn color="error" class="mr-4" @click="reset">
+                Reset Form
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-form>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>

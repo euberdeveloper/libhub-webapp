@@ -6,9 +6,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         UserName: "",
-        UserEmail: ""
+        UserEmail: "",
+        loginDialog: false
     },
-    mutations: {},
+    mutations: {
+        showLoginDialog (state){
+            state.loginDialog = true
+        },
+        hideLoginDialog (state){
+            state.loginDialog = false
+        }
+    },
     actions: {},
     modules: {}
 })

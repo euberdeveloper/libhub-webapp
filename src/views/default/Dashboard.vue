@@ -1,28 +1,12 @@
 <template>
-    <v-app>
-    
-    <NavigationDrawer/>
-
-    <v-main>
-        <v-container align-content-lg >
-            {{ $route.params.id }}
-        </v-container>
-    </v-main>
-
-
-  </v-app>
+  <v-container align-content-lg>
+    {{ $route.params.id }}
+  </v-container>
 </template>
 
 <script>
-import NavigationDrawer from '@/components/NavigationDrawer.vue';
-
 export default {
-    name: 'Dashboard',
-    components:{
-        NavigationDrawer,
-    },
-    props: [
-        'id'
-    ]
-}
+  name: "Dashboard",
+  props: ["id"],
+};
 </script>
