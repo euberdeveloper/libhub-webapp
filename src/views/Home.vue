@@ -28,7 +28,7 @@
 
     <v-main>
         <v-container align-content-lg >
-            <v-row   class="signup-style">
+            <v-row   class="central-align-style">
 
             <v-col>
                 <AboutUs/>
