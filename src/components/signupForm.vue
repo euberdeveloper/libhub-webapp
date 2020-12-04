@@ -57,7 +57,7 @@
 
 <script>
 export default {
-    name: 'signupForm',
+    name: 'SignupForm',
     data () {
       return {
         valid: true,
