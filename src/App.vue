@@ -55,6 +55,7 @@
 <script>
 import signupForm from './components/signupForm.vue';
 
+
 export default {
   name: 'App',
 
