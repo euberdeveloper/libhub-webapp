@@ -36,12 +36,12 @@
         
             <v-row no-gutters class="signup-style">
               <v-col>
-                
+                <AboutUs/>
               </v-col>
               
               <v-col>
                 <v-card elevation-5>
-                  <signupForm/>
+                  <SignupForm/>
                 </v-card>
               </v-col>
             </v-row>
@@ -53,14 +53,16 @@
 </template>
 
 <script>
-import signupForm from './components/signupForm.vue';
+import AboutUs from './components/AboutUs.vue';
+import SignupForm from './components/SignupForm.vue';
 
 
 export default {
   name: 'App',
 
   components: {
-    signupForm
+    SignupForm,
+    AboutUs
   },
 
   data: () => ({
