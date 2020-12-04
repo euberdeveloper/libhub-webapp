@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify';
 import vuex from 'vuex'
+import store from './store'
 
 
 Vue.config.productionTip = false
@@ -18,6 +19,7 @@ const session_store = new vuex.Store({
 new Vue({
     router,
     vuetify,
-    store: session_store,
+    store,
+    sotre: session_store,
     render: h => h(App)
 }).$mount('#app')
