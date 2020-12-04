@@ -1,0 +1,14 @@
+Design thinking
+  -> approccio sistematico con lo scopo ultimo di trovare soluzioni
+  -> permette di considerare multiple soluzioni contemporaneamente
+  -> iterativo, può portare a riformulare il problema
+  -> 2 fasi:
+    1) Analisi = processo iniziale che consiste nel ridurre il problema in piccoli sottoproblemi, trovando soluzioni per ciascuno di essi; le soluzioni non valide vengono rimosse alla fine
+    2) Sintesi = processo finae che consiste nel riunire tutte le sotto-soluzioni in una singola soluzione che risolva il problema iniziale
+  -> Divergent Thinking = sviluppare multiple soluzioni creative per ogni singolo microproblema; non si giudicano le soluzioni
+  -> Convergent Thinking = restringere le soluzioni ideate durante il DT per trovare un numero molto limitato di soluzioni "ottime" senza ambiguità; giudicare le soluzioni è imperativo
+  -> 5 Passi sequenziali: Empatizzare: Personas, Mappa empatica (do,think,feel,say)
+                          Definire: Problem Statement costruito sulle necessità dell'utente e nostre intuizioni, Sintesi, Domande "Come possiamo...?"
+                          Ideare: Fornire un flusso continuo di idee creative, fattibili o meno. Processo di selezione, le idee con più voti passano al prototyping.
+                          Prototipare: Continuo sviluppo iterativo di prototipi low cost, creare un esperienza per l'utente
+                          Testare: Se test sul prototipo è positivo ci fermiamo, altrimenti ripartiamo con il processo di design thinking. 

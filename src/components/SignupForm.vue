@@ -47,11 +47,13 @@
       </v-btn>
 
       <v-btn
-        color="error"
-        class="mr-4"
-        @click="reset"
+        class="float-right"
+        elevation="0"
+        to="login"
+        tile
       >
-        Reset Form
+        <span class="mr-2">Login </span>
+        <v-icon>mdi-account-circle</v-icon>
       </v-btn>
       
     </v-form>
@@ -92,9 +94,6 @@ export default {
         /*
          #TODO add user to the database
         */
-      },
-      reset () {
-        this.$refs.form.reset()
       }
     },
 }

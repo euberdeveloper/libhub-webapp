@@ -1,8 +1,5 @@
-<style>
-  @import './styles/Home.css';
-</style>
-
 <template>
+<<<<<<< HEAD
   <v-app>
     <v-app-bar app color="#81D4FA">
       <div class="d-flex align-center">
@@ -50,27 +47,28 @@
        
     </v-main>
   </v-app>
+=======
+    <router-view><Home/></router-view>
+>>>>>>> 4f050ccb8e5aa6d8dae537399b7a406e30cfa034
 </template>
 
 <script>
-import AboutUs from './components/AboutUs.vue';
-import SignupForm from './components/SignupForm.vue';
-
+import Home from './views/Home.vue';
 
 export default {
   name: 'App',
 
   components: {
-    SignupForm,
-    AboutUs
+    Home
   },
 
   data: () => ({
     // 
   }),
+  
 };
 </script>
 
 <style>
-
+  @import './styles/Home.css';
 </style>
