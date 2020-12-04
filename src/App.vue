@@ -1,9 +1,5 @@
 <template>
-  <v-container>
-    
-    <Home/>
-    
-  </v-container>
+    <router-view><Home/></router-view>
 </template>
 
 <script>
@@ -19,9 +15,7 @@ export default {
   data: () => ({
     // 
   }),
-  methods: {
-    
-  }  
+  
 };
 </script>
 

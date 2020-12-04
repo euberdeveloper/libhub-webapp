@@ -25,25 +25,25 @@
     </v-app-bar>
     
     
-    <router-view>
-        <v-main>
-            <v-container align-content-lg >
-                    <v-row   class="signup-style">
 
-                    <v-col>
-                        <AboutUs/>
-                    </v-col>
-                    
-                    <v-col>
-                        <v-card elevation-5 class="signup-form-style">
-                        <SignupForm/>
-                        </v-card>
-                    </v-col>
+    <v-main>
+        <v-container align-content-lg >
+            <v-row   class="signup-style">
 
-                    </v-row>
-            </v-container>
-        </v-main>
-    </router-view>
+            <v-col>
+                <AboutUs/>
+            </v-col>
+            
+            <v-col>
+                <v-card elevation-5 class="signup-form-style">
+                <SignupForm/>
+                </v-card>
+            </v-col>
+
+            </v-row>
+        </v-container>
+    </v-main>
+
 
   </v-app>
 </template>
@@ -64,7 +64,9 @@ export default {
     // 
   }),
   methods: {
-    
+    login (){
+        this.router.push("/login")
+    }
   }  
 };
 </script>

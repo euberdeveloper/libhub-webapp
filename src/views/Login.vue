@@ -1,10 +1,36 @@
 <template>
-  <v-container>
-    <br><br><br><br>
-    <v-card elevation-5 class="signup-form-style">
-      <LogInForm/>
-    </v-card>
-  </v-container>
+  <v-app>
+    <v-app-bar app color="#81D4FA">
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="@/assets/logo.png"
+          transition="scale-transition"
+          width="100"
+        />
+
+      </div>
+
+      <v-spacer></v-spacer>
+      
+      <v-btn to="/">
+      
+        <span class="mr-2">Home</span>
+        <v-icon>mdi-home-circle</v-icon>
+      </v-btn>
+      
+    </v-app-bar>
+
+    <v-main>
+      <v-container align-content-lg >
+        <v-card elevation-5 >
+          <LogInForm/>
+        </v-card>
+      </v-container>
+</v-main>
+  </v-app>
 </template>
 
 <script>
@@ -14,7 +40,9 @@ export default {
   name: 'Login',
   components: {
     LogInForm
+  },
+  methods: {
+    
   }
-  
 }
 </script>
