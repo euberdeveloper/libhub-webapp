@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-app-bar app color="#260000">
-      <div class="d-flex">
+      <div class="d-flex justify-center">
         <!-- <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon> -->
 
-        <v-icon class="mr-2" @click="showDrawer" color="white">mdi-menu</v-icon>
+        <v-icon class="mr-2 my-3" @click="showDrawer" color="white">mdi-menu</v-icon>
 
         <v-img
           alt="Lib-hub Logo"
