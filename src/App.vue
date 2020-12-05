@@ -14,8 +14,8 @@
 <script>
 export default {
   name: "App",
-  created () {
-    document.title = "LibHub"
+  beforeCreate () {
+    //document.title = "LibHub"
   },
   data: () => ({
     //

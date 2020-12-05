@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-app-bar app color="#260000">
-      <div class="d-flex align-center">
+      <div class="d-flex">
         <!-- <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon> -->
 
         <v-icon class="mr-2" @click="showDrawer" color="white">mdi-menu</v-icon>
@@ -18,8 +18,9 @@
 
       <v-spacer></v-spacer>
 
-      <user-menu/>
-
+      <div>
+        <user-menu/>
+      </div>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" stateless app>
