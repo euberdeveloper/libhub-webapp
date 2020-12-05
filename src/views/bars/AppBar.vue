@@ -41,10 +41,10 @@
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>home</v-list-item-title>
+            <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
           
-          <v-list-item>
+          <v-list-item @click="toDashboard">
             <v-list-item-icon>
               <v-icon>mdi-view-dashboard-variant</v-icon>
             </v-list-item-icon>
@@ -86,6 +86,9 @@ export default {
       }else{
         this.drawer = true;
       }
+    },
+    toDashboard (){
+      this.$router.push("/dash/" + this.$route.params.id);
     }
   },
   components:{
