@@ -8,5 +8,8 @@
 export default {
   name: "Dashboard",
   props: ["id"],
+  data: () => ({
+    info: null,
+  }),
 };
 </script>

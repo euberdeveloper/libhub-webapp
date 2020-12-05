@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    
 
     <router-view name="bar"/>
 
@@ -13,7 +14,9 @@
 <script>
 export default {
   name: "App",
-
+  created () {
+    document.title = "LibHub"
+  },
   data: () => ({
     //
   }),
