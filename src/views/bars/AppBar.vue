@@ -4,7 +4,7 @@
       <div class="d-flex align-center">
         <!-- <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon> -->
 
-        <v-icon class="mr-2" @click="drawer = true" color="white">mdi-menu</v-icon>
+        <v-icon class="mr-2" @click="showDrawer" color="white">mdi-menu</v-icon>
 
         <v-img
           alt="Lib-hub Logo"
@@ -18,17 +18,31 @@
 
       <v-spacer></v-spacer>
 
-      <v-avatar>
-        <img
-          src="https://i.pinimg.com/564x/66/28/0b/66280bc785eca690ff854e7e61edb66b.jpg"
-          alt="Tartaglia"
-        />
-      </v-avatar>
+      <user-menu/>
+
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" temporary app style="margin-top: 3.38%">
+    <v-navigation-drawer v-model="drawer" stateless app>
+      
       <v-list nav dense>
+        
         <v-list-item-group v-model="group" active-class=" text--accent-4">
+          <v-list-item-content>
+            <v-list-item-title class="title">
+              Navigation Bar
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              
+            </v-list-item-subtitle>
+          </v-list-item-content>
+
+          <v-list-item to="/">
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>home</v-list-item-title>
+          </v-list-item>
+          
           <v-list-item>
             <v-list-item-icon>
               <v-icon>mdi-view-dashboard-variant</v-icon>
@@ -56,11 +70,25 @@
 </template>
 
 <script>
+import UserMenu from "@/components/UserMenu.vue"
+
 export default {
   name: "NavigationDrawer",
   data: () => ({
     drawer: false,
     group: null,
   }),
+  methods: {
+    showDrawer(){
+      if (this.drawer){
+        this.drawer = false;
+      }else{
+        this.drawer = true;
+      }
+    }
+  },
+  components:{
+    UserMenu
+  }
 };
 </script>

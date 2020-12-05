@@ -83,6 +83,7 @@ export default {
       /*
          #TODO Log in user
         */
+      this.$store.commit('hideLoginDialog')
       this.$router.push("/dash/" + this.name);
     },
     reset() {
