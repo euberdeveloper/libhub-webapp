@@ -6,6 +6,9 @@ export default new Vuex.Store({
     state: {
         UserName: "",
         UserEmail: "",
+        UserId: "",
+        LibraryId: "",
+        BookId: "",
         loginDialog: false
     },
     mutations: {
@@ -14,7 +17,8 @@ export default new Vuex.Store({
         },
         hideLoginDialog (state){
             state.loginDialog = false
-        }
+        },
+        
     },
     actions: {},
     modules: {}
