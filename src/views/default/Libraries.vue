@@ -12,7 +12,10 @@ export default {
     DisplayLibraries,
   },
   data: () => ({
-    
+    uid: "none",
   }),
+  mounted(){
+    this.uid = this.$store.state.UserId;
+  }
 };
 </script>

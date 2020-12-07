@@ -21,9 +21,9 @@
                   alt="Tartaglia"
                 />
               </v-avatar>
-              <h3>{{ $route.params.id }}</h3>
+              <h3>{{ this.uid }}</h3>
               <p class="caption mt-1">
-                {{ $route.params.id }}
+                {{ this.uid }}
               </p>
               <v-divider class="my-3"></v-divider>
               <v-btn depressed rounded text> Edit Account </v-btn>
@@ -40,5 +40,11 @@
 <script>
 export default {
   name: "UserMenu",
+  data : () => ({
+    uid : "",
+  }),
+  mounted(){
+    this.uid = this.$store.state.UserId;
+  }
 };
 </script>

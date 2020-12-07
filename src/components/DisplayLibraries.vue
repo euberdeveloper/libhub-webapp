@@ -84,14 +84,14 @@ export default {
     ],
   }),
   methods: {
-        openLibrary(lid){
-            this.$router.push("/libraries/" + this.$route.params.id + "/" + lid + "/books").catch(()=>{});
-        }
+      openLibrary(lid){
+          this.$store.commit('setLibraryId', lid);
+          this.$router.push("/libraries/" + lid + "/books").catch(()=>{});
+      }
     },
   async mounted() {
     try {
       this.libraries = await getLibraries();
-      console.log(this.libraries);
     } catch (error) {
       //window.alert(error);
     }

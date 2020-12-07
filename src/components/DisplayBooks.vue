@@ -54,13 +54,13 @@ export default {
         books: null,
     }),
     async mounted() {
-    try {
-      //console.log(this.$prop.id);
-      //this.books = await getBooks(this.lid);
-      
-    } catch (error) {
-      //window.alert(error);
-    }
+      try {
+        this.lid = this.$store.state.LibraryId;
+        this.books = await getBooks(this.lid);
+        console.log(this.books.title);
+      } catch (error) {
+        //window.alert(error);
+      }
   },
 };
 </script>

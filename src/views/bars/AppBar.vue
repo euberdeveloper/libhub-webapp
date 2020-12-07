@@ -89,13 +89,13 @@ export default {
       }
     },
     toDashboard (){
-      this.$router.push("/dash/" + this.$route.params.id).catch(()=>{});
+      this.$router.push("/dash").catch(()=>{});
     },
     toLibraries (){
-      this.$router.push("/libraries/" + this.$route.params.id).catch(()=>{});
+      this.$router.push("/libraries").catch(()=>{});
     },
     toTags (){
-      this.$router.push("/tags/" + this.$route.params.id).catch(()=>{});
+      this.$router.push("/tags").catch(()=>{});
     }
   },
   components:{

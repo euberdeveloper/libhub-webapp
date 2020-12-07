@@ -13,7 +13,7 @@
                 id="UserName"
                 :rules="nameRules"
                 :counter="23"
-                label="Username"
+                label="UserName"
                 required
               ></v-text-field>
             </v-col>
@@ -80,11 +80,11 @@ export default {
   methods: {
     validate() {
       this.$refs.form.validate();
-      /*
-         #TODO Log in user
-        */
-      this.$store.commit('hideLoginDialog')
-      this.$router.push("/dash/" + this.name);
+      
+      this.$store.commit('setUserId', this.name);
+
+      this.$store.commit('hideLoginDialog');
+      this.$router.push("/dash");
     },
     reset() {
       this.$refs.form.reset();

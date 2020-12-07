@@ -15,7 +15,7 @@ const routes = [{
         }
     },
     {
-        path: '/dash/:id',
+        path: '/dash',
         name: 'Dashboard',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -28,7 +28,7 @@ const routes = [{
         }
     },
     {
-        path: '/libraries/:id',
+        path: '/libraries',
         name: 'Libraries',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -41,7 +41,7 @@ const routes = [{
         }
     },
     {
-        path: '/libraries/:id/:lid/books',
+        path: '/libraries/:lid/books',
         name: 'Books',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -54,7 +54,7 @@ const routes = [{
         }
     },
     {
-        path: '/tags/:id',
+        path: '/tags',
         name: 'Tags',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
