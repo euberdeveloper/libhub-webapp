@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/default/Home.vue'
 import HomeBar from '../views/bars/HomeBar.vue'
 import ErrorPage from '../views/default/Error_page.vue'
+import TagTree from '../components/TagTree.vue'
+import ErrorBar from '../views/bars/ErrorBar.vue'
 
 Vue.use(VueRouter)
 
@@ -71,7 +73,16 @@ const routes = [{
         name: 'Error_page',
         components: {
             default: ErrorPage,
-            bar: HomeBar
+            bar: ErrorBar
+        }
+    },
+    //Test route for trying new component
+    //Must be eliminated ad the end of the sprint
+    {
+        path: '/test_component',
+        name: 'Test_component',
+        components: {
+            default: TagTree
         }
     }
 ]

@@ -8,10 +8,7 @@
         :key="library._id"
         @click="openLibrary(library._id)"
       >
-        <v-img
-          height="100%"
-          src="https://cdn.vuetifyjs.com/images/cards/server-room.jpg"
-        >
+        <v-img height="100%" src="https://cdn.vuetifyjs.com/images/cards/server-room.jpg">
           <v-row align="end" class="fill-height">
             <v-col align-self="start" class="pa-0" cols="12">
               <v-avatar class="profile" color="grey" size="400" tile>
@@ -44,7 +41,6 @@
     </v-row>
   </v-container>
 </template>
-
 
 <script>
 //import { getLibraries } from "@/services/api/libraries/index.js";
@@ -84,16 +80,17 @@ export default {
     ],
   }),
   methods: {
-      openLibrary(lid){
-          this.$store.commit('setLibraryId', lid);
-          //this.$router.push("/libraries/" + lid + "/books").catch(()=>{});
-      }
+    openLibrary(lid) {
+      this.$store.commit("setLibraryId", lid);
+      //this.$router.push("/libraries/" + lid + "/books").catch(()=>{});
     },
+  },
   async mounted() {
     try {
       //this.libraries = await getLibraries();
     } catch (error) {
       //window.alert(error);
+      //this.router.push("/error_page");
     }
   },
 };

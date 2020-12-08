@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { VueTreeList, Tree, TreeNode } from "vue-tree-list";
+import { VueTreeList, Tree , TreeNode} from "vue-tree-list";
 
 export default Vue.extend({
   name: "TagTree",
