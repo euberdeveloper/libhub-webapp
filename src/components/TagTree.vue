@@ -1,18 +1,34 @@
 <template>
   <v-container>
+    <v-btn @click="addLabel" color="success" class="mb-2">
+      <v-icon>mdi-tag-plus</v-icon>
+      <span>New Tag</span>
+    </v-btn>
+  
     <vue-tree-list
-      @click="onClick"
       @delete-node="deleteElement"
       :model="labels"
       default-tree-node-name="new label"
-      default-leaf-node-name="new child_label"
+      default-leaf-node-name="new label"
     >
-      <span class="icon" slot="addTreeNodeIcon">📂</span>
-      <span class="icon" slot="editNodeIcon">📃</span>
-      <span class="icon" slot="delNodeIcon">❌</span>
-      <span class="icon" slot="addLeafNodeIcon">➕</span>
-      <span class="icon" slot="leafNodeIcon">🏷️</span>
-      <span class="icon" slot="treeNodeIcon">🏷️</span>
+      <span class="icon ma-1" slot="addTreeNodeIcon"
+        ><v-icon>mdi-tag-plus</v-icon></span
+      >
+      <span class="icon ma-1" slot="editNodeIcon"
+        ><v-icon>mdi-pencil</v-icon></span
+      >
+      <span class="icon ma-1" slot="delNodeIcon"
+        ><v-icon>mdi-delete</v-icon></span
+      >
+      <span class="icon ma-1" slot="addLeafNodeIcon"
+        ><v-icon>mdi-plus-box</v-icon></span
+      >
+      <span class="icon ma-1" slot="leafNodeIcon"
+        ><v-icon>mdi-tag</v-icon></span
+      >
+      <span class="icon ma-1" slot="treeNodeIcon"
+        ><v-icon>mdi-tag-multiple</v-icon></span
+      >
     </vue-tree-list>
   </v-container>
 </template>
@@ -29,15 +45,16 @@ export default Vue.extend({
   data() {
     return {
       //this must be taken from the database from the user profile
+      newTree: {},
       labels: new Tree([
         {
-          name: "Node 1",
+          name: "Fantasy",
           id: 1,
           pid: 0,
           //  dragDisabled: true,
           children: [
             {
-              name: "Node 1-2",
+              name: "Romantic Fantasy",
               id: 2,
               isLeaf: true,
               pid: 1,
@@ -45,12 +62,12 @@ export default Vue.extend({
           ],
         },
         {
-          name: "Node 2",
+          name: "Horror",
           id: 3,
           pid: 0,
         },
         {
-          name: "Node 3",
+          name: "Crime",
           id: 4,
           pid: 0,
         },
@@ -58,10 +75,10 @@ export default Vue.extend({
     };
   },
   methods: {
-    addLabelChild: function () {
-      var node = new TreeNode({ name: "new node", isLeaf: false });
-      if (!this.data.children) this.data.children = [];
-      this.data.addChildren(node);
+    addLabel: function () {
+      var node = new TreeNode({ name: "New Tag", isLeaf: false });
+      if (!this.labels.children) this.labels.children = [];
+      this.labels.addChildren(node);
     },
     deleteElement(node) {
       node.remove();
@@ -69,3 +86,9 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style>
+  .icon:hover {
+    cursor: pointer;
+  }
+</style>
