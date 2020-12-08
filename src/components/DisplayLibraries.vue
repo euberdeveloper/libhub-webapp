@@ -6,7 +6,7 @@
         max-width="460"
         v-for="library in libraries"
         :key="library._id"
-        @click="openLibrary(library._id)"
+        @click="openLibrary(library)"
       >
         <v-img height="100%" src="https://cdn.vuetifyjs.com/images/cards/server-room.jpg">
           <v-row align="end" class="fill-height">
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-//import { getLibraries } from "@/services/api/libraries/index.js";
+import { getLibraries } from "@/services/api/libraries/index.js";
 
 export default {
   name: "DisplayLibraries",
@@ -51,7 +51,7 @@ export default {
   data: () => ({
     info: null,
     libraries: [
-      {
+      /*{
         _id: "8854215487",
         name: "Sala",
         owners: ["Mario", "Pietro"],
@@ -76,21 +76,20 @@ export default {
           ],
           ubications: ["Scaffale A", "Scaffale B", "Scaffale C", "Scaffale D"],
         },
-      },
+      },*/
     ],
   }),
   methods: {
-    openLibrary(lid) {
-      this.$store.commit("setLibraryId", lid);
-      //this.$router.push("/libraries/" + lid + "/books").catch(()=>{});
+    openLibrary(library) {
+      this.$store.commit("setLibraryId", library._id);
+      this.$router.push("/libraries/" + library.name + "/books").catch(()=>{});
     },
   },
   async mounted() {
     try {
-      //this.libraries = await getLibraries();
+      this.libraries = await getLibraries();
     } catch (error) {
-      //window.alert(error);
-      //this.router.push("/error_page");
+      this.$router.push("/error_page");
     }
   },
 };

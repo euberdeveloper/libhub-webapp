@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-app-bar app color="#260000">
+    <v-app-bar app color="#62000F">
       <div class="d-flex justify-center">
         <!-- <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon> -->
 

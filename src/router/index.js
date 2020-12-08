@@ -43,7 +43,7 @@ const routes = [{
         }
     },
     {
-        path: '/libraries/:lid/books',
+        path: '/libraries/:lname/books',
         name: 'Books',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

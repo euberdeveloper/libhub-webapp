@@ -7,6 +7,7 @@
   
     <vue-tree-list
       @delete-node="deleteElement"
+      @add-node="onAddNode"
       :model="labels"
       default-tree-node-name="new label"
       default-leaf-node-name="new label"
@@ -52,12 +53,14 @@ export default Vue.extend({
           id: 1,
           pid: 0,
           //  dragDisabled: true,
+          addLeafNodeDisabled: true,
           children: [
             {
               name: "Romantic Fantasy",
               id: 2,
-              isLeaf: true,
+              isLeaf: false,
               pid: 1,
+              addLeafNodeDisabled: true
             },
           ],
         },
@@ -65,18 +68,23 @@ export default Vue.extend({
           name: "Horror",
           id: 3,
           pid: 0,
+          addLeafNodeDisabled: true,
         },
         {
           name: "Crime",
           id: 4,
           pid: 0,
+          addLeafNodeDisabled: true,
         },
       ]),
     };
   },
   methods: {
+    onAddNode(params) {
+      params.addLeafNodeDisabled = true;
+    },
     addLabel: function () {
-      var node = new TreeNode({ name: "New Tag", isLeaf: false });
+      var node = new TreeNode({ name: "New Tag", isLeaf: false, addLeafNodeDisabled : true});
       if (!this.labels.children) this.labels.children = [];
       this.labels.addChildren(node);
     },

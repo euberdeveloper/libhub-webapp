@@ -4,8 +4,8 @@
       <v-card
         class="ma-2"
         max-width="460"
-        v-for="book in books"
-        :key="book._id"
+        v-for="(book, index) in books"
+        :key="index"
         
       >
         <v-img
@@ -17,7 +17,7 @@
               <v-avatar class="profile" color="grey" size="400" tile>
                 <v-carousel cycle show-arrows-on-hover progress interval="5000">
                   <v-carousel-item
-                    v-for="(picture, i) in library.schema.pictures"
+                    v-for="(picture, i) in book.pictures"
                     :key="i"
                     :src="picture"
                   ></v-carousel-item>
@@ -49,17 +49,16 @@ import { getBooks } from "@/services/api/libraries/books/index.js";
 
 export default {
     name: "DisplayBooks",
-    props: ["id","lid"],
+    props: ["lname"],
     data: () => ({
-        books: null,
+        books: [],
     }),
     async mounted() {
       try {
-        this.lid = this.$store.state.LibraryId;
-        this.books = await getBooks(this.lid);
-        console.log(this.books.title);
+        this.books = await getBooks(this.$store.state.LibraryId);
+        console.log(this.books[0].title);
       } catch (error) {
-        //window.alert(error);
+        this.$router.push("/error_page");
       }
   },
 };
