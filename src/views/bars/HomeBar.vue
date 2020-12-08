@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="#260000">
+  <v-app-bar app color="#62000F">
     <div class="d-flex align-center">
       <v-img
         alt="Lib-hub Logo"
@@ -13,7 +13,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn color="#260000" elevation="0" tile @click="openLoginDialog">
+    <v-btn color="#62000F" elevation="0" tile @click="openLoginDialog">
       <span class="mr-2 button-white" >Login </span>
       <v-icon color="white">mdi-account-circle</v-icon>
     </v-btn>

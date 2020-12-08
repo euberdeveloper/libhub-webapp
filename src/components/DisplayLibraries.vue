@@ -47,7 +47,7 @@
 
 
 <script>
-import { getLibraries } from "@/services/api/libraries/index.js";
+//import { getLibraries } from "@/services/api/libraries/index.js";
 
 export default {
   name: "DisplayLibraries",
@@ -86,12 +86,12 @@ export default {
   methods: {
       openLibrary(lid){
           this.$store.commit('setLibraryId', lid);
-          this.$router.push("/libraries/" + lid + "/books").catch(()=>{});
+          //this.$router.push("/libraries/" + lid + "/books").catch(()=>{});
       }
     },
   async mounted() {
     try {
-      this.libraries = await getLibraries();
+      //this.libraries = await getLibraries();
     } catch (error) {
       //window.alert(error);
     }
