@@ -25,7 +25,7 @@
 
     <v-navigation-drawer v-model="drawer" stateless app>
       
-      <v-list nav dense>
+      <v-list nav dense flat>
         
         <v-list-item-group v-model="group" active-class=" text--accent-4">
           <v-list-item-content>
@@ -51,18 +51,18 @@
             <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item @click="toLibraries">
             <v-list-item-icon>
               <v-icon>mdi-bookshelf</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Libraries</v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item @click="toTags">
             <v-list-item-icon>
-              <v-icon>mdi-book-open-page-variant</v-icon>
+              <v-icon>mdi-tag-multiple</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Books</v-list-item-title>
+            <v-list-item-title>Tags</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -75,6 +75,7 @@ import UserMenu from "@/components/UserMenu.vue"
 
 export default {
   name: "NavigationDrawer",
+  props: ["id"],
   data: () => ({
     drawer: false,
     group: null,
@@ -88,7 +89,13 @@ export default {
       }
     },
     toDashboard (){
-      this.$router.push("/dash/" + this.$route.params.id);
+      this.$router.push("/dash").catch(()=>{});
+    },
+    toLibraries (){
+      this.$router.push("/libraries").catch(()=>{});
+    },
+    toTags (){
+      this.$router.push("/tags").catch(()=>{});
     }
   },
   components:{
