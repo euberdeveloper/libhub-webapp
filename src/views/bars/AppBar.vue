@@ -19,22 +19,16 @@
       <v-spacer></v-spacer>
 
       <div>
-        <user-menu/>
+        <user-menu />
       </div>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" stateless app>
-      
       <v-list nav dense flat>
-        
         <v-list-item-group v-model="group" active-class=" text--accent-4">
           <v-list-item-content>
-            <v-list-item-title class="title">
-              Navigation Bar
-            </v-list-item-title>
-            <v-list-item-subtitle>
-              
-            </v-list-item-subtitle>
+            <v-list-item-title class="title"> Navigation Bar </v-list-item-title>
+            <v-list-item-subtitle> </v-list-item-subtitle>
           </v-list-item-content>
 
           <v-list-item to="/">
@@ -43,7 +37,7 @@
             </v-list-item-icon>
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
-          
+
           <v-list-item @click="toDashboard">
             <v-list-item-icon>
               <v-icon>mdi-view-dashboard-variant</v-icon>
@@ -71,7 +65,7 @@
 </template>
 
 <script>
-import UserMenu from "@/components/UserMenu.vue"
+import UserMenu from "@/components/User/UserMenu.vue";
 
 export default {
   name: "NavigationDrawer",
@@ -81,25 +75,25 @@ export default {
     group: null,
   }),
   methods: {
-    showDrawer(){
-      if (this.drawer){
+    showDrawer() {
+      if (this.drawer) {
         this.drawer = false;
-      }else{
+      } else {
         this.drawer = true;
       }
     },
-    toDashboard (){
-      this.$router.push("/dash").catch(()=>{});
+    toDashboard() {
+      this.$router.push("/dash").catch(() => {});
     },
-    toLibraries (){
-      this.$router.push("/libraries").catch(()=>{});
+    toLibraries() {
+      this.$router.push("/libraries").catch(() => {});
     },
-    toTags (){
-      this.$router.push("/tags").catch(()=>{});
-    }
+    toTags() {
+      this.$router.push("/tags").catch(() => {});
+    },
   },
-  components:{
-    UserMenu
-  }
+  components: {
+    UserMenu,
+  },
 };
 </script>
