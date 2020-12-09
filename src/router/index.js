@@ -3,8 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/default/Home.vue'
 import HomeBar from '../views/bars/HomeBar.vue'
 import ErrorPage from '../views/default/Error_page.vue'
-import TagTree from '../components/TagTree.vue'
+//import TagTree from '../components/TagTree.vue'
 import ErrorBar from '../views/bars/ErrorBar.vue'
+import BookInsertForm from '../components/BookInsertForm.vue'
 
 Vue.use(VueRouter)
 
@@ -82,7 +83,7 @@ const routes = [{
         path: '/test_component',
         name: 'Test_component',
         components: {
-            default: TagTree
+            default: BookInsertForm
         }
     }
 ]
