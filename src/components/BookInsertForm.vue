@@ -17,7 +17,12 @@
               ></v-text-field>
             </v-col>
             <v-col align="left">
-              <v-btn color="#ff1744" class="mr-4" @click="retrieveInfo">
+              <v-btn
+                color="#ff1744"
+                :loading="loading"
+                class="mr-4"
+                @click="retrieveInfo"
+              >
                 Retrieve info
               </v-btn>
             </v-col>
@@ -94,6 +99,7 @@ export default {
   data() {
     return {
       valid: true,
+      loading: false,
       ISBN: "",
       title: "",
       edition: "",
@@ -116,6 +122,7 @@ export default {
       this.$refs.form.reset();
     },
     async retrieveInfo() {
+      this.loading = true;
       this.$refs.form.validate();
       const res = await retrieveBookInfo(this.$refs.form.$el["ISBN"].value);
       for (let i in res) {
@@ -123,6 +130,7 @@ export default {
           this.$refs.form.$el[i].value = res[i];
         }
       }
+      this.loading = false;
     },
   },
 };
