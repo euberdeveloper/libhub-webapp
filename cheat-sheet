@@ -12,3 +12,137 @@ Design thinking
                           Ideare: Fornire un flusso continuo di idee creative, fattibili o meno. Processo di selezione, le idee con più voti passano al prototyping.
                           Prototipare: Continuo sviluppo iterativo di prototipi low cost, creare un esperienza per l'utente
                           Testare: Se test sul prototipo è positivo ci fermiamo, altrimenti ripartiamo con il processo di design thinking. 
+                          
+        
+Agile:
+	-Approccio iterativo, rapido e flessibile rispetto ai cambiamenti
+	-Codice sorgente modulare, facile da comprendere e modificare
+	Vantaggi:
+		- Minor rischio di fallire
+		- Produttività più elevata
+		- Feedback continuo 
+		- Gestione della complessità
+		- Evoluzione basata sulle iterazioni precedenti
+
+RELEASE
+	-ITERAZ-1
+		-USER STORY 1
+		-USER STORY...
+		-USER STORY N
+	-ITERAZ...
+	-ITERAZ-N
+
+	- Non si cambiano i requisiti mid-iteration
+
+SCRUM
+	Tanti team autonomi, multi funzionali, di max 7 persone
+	Dividi il lavoro in tanti pezzetti piccoli, comcreti "deliverables", esegui il sorting per priorità, stima il valore in "gettoni fatica"
+	Dividi il tempo in brevi iterazioni di durata fissa(1/4 settimane) con lo scopo di fornire codice potenzialmente production ready 
+	Dopo ogni iterazione guarda indietro e ottimizza in base alle osservazioni
+	seguire il product backlog ha priorità
+
+	WIP in base a unità di tempo
+
+ WIP
+	3
+	|-- | --|
+	|---| -	|
+	2	|	|
+	|.. |	|
+	|.  |...|
+	1 	|	|
+	|+++| + |
+	|___1___2
+   0		TIME
+
+
+KANBAN
+	Limita il work in progress
+	Visualizzazione del WORKFLOW molto prominente
+	Misura il tempo per completare un "oggetto" ovvero il CYCLE TIME
+	Permette team mono-funzione2
+	non è obbligatorio seguire il product backlog
+	
+	WIP in base a quanto c'è già di WIP
+
+ WIP
+	3-------
+	| - - -- 
+	|
+	2-------
+	|.. ....
+	|
+	1-------
+	|+++++++
+	|___1___2
+   0		TIME
+
+SCRUM - SPRINT
+	BACKLOG -> 15/30 gg sprint con meeting giornaliero -> PRODUCT POTENZIALMENTE-PRODUCTION-READY
+	PRODUCT OWNER 1
+	TEAM MEMBERS ~7
+	SCRUM MASTER 1 of the TEAM MEMBERS
+
+	Velocità stimata: quello che si pensa di fare nello sprint in effort-points(10)
+	Velocità effettiva: quello che si è finito al termine dello sprint in ep (8)
+
+	SPRINT-PLANNING
+		-OBIETTIVO DELLO SPRINT
+		-Lista dei TEAM MEMBERS
+		-BACKLOG
+		-DEMO DATE
+		-TIME + PLACE of the DAILY MEETINGS
+		-BURNDOWN CHART
+
+	BRAINSTORMING
+		- IDEA DEL PROGETTO
+		- UTENTI, NECESSITA', MOTIVAZIONI NECESSITA'
+		- USER STORIES
+		- UI MOCKUP
+
+INIZIATIVA
+ \_EPICHE: Fattibile in multipli sprints, contiene più user stories
+   \_USER STORIES: Fattibile in 1 sprint, atomica	
+
+
+TESTING: processo con lo scopo di assicurare che il codice faccia quello che deve fare e null'altro
+		 aggiunge valore al codice migliorandone la qualità e l'affidabilità
+		 ha lo scopo di TROVARE errori, non dimostrare che il programma è ERROR FREE
+		 i problemi possono verificarsi anche a livello di hardware, OS e librerie, non solo software
+
+DIMENSIONI DEL TESTING:
+	|-CARATTERISTICHE
+	|	|-comportamento 
+	|	|-user-friendlyness
+	|	|-performance
+	|	|-robustezza
+	|	|-affidabilità
+	|	\_sicurezza
+	|		
+	|-METODO
+	|	|-white-box: scegliamo input che causano l'esecuzione di uno specifico path nel codice -> Maximize error in a finite number of test cases
+	|	\_black-box: testiamo la funzionalità di una funzione senza sapere come sia programmata -> Path testing
+	|
+	\_DETTAGLI
+		|-unità: singola funzione isolata
+		|-modulo:  
+		|-integrazione: combiniamo multiple funzioni già testate
+		\_sistema: testiamo se il sistema soddisfa i requisiti
+
+FORMATO DEL TESTING:
+	|- Precondizioni
+	|- Input
+	\_ Output atteso
+
+BUONI TEST CASES:
+	- Ben definiti
+	- Preparare il sistema (pulire usenames/data)
+	- Casi concatenati dovrebbero essere eseguiti in sequenza (output1 = input 2, output2 = input3)
+	- 1 test case per user story
+	- catturare gli estremi nel testing
+
+HUMAN TESTING:
+	- Usato prima del computer-based testing
+	- Aumenta produttività e affidabilità
+	- Correggere errori post computer testing di solito genera altri errori
+	- Code inspection -> 3/4 persone controllano il codice con lo scopo di TROVARE ERRORI
