@@ -122,15 +122,17 @@ export default {
       this.$refs.form.reset();
     },
     async retrieveInfo() {
-      this.loading = true;
       this.$refs.form.validate();
-      const res = await retrieveBookInfo(this.$refs.form.$el["ISBN"].value);
-      for (let i in res) {
-        if (i && i !== "picture") {
-          this.$refs.form.$el[i].value = res[i];
+      if (this.$refs.form.$el["ISBN"].value) {
+        this.loading = true;
+        const res = await retrieveBookInfo(this.$refs.form.$el["ISBN"].value);
+        for (let i in res) {
+          if (i && i !== "picture") {
+            this.$refs.form.$el[i].value = res[i];
+          }
         }
+        this.loading = false;
       }
-      this.loading = false;
     },
   },
 };
