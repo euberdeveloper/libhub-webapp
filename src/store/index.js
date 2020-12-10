@@ -9,20 +9,24 @@ export default new Vuex.Store({
         UserId: "",
         LibraryId: "",
         BookId: "",
-        loginDialog: false
+        loginDialog: false,
+        error_message: "ciao sono un messaggio di errore generico che può essere modificato :)"
     },
     mutations: {
-        showLoginDialog (state){
+        showLoginDialog(state) {
             state.loginDialog = true
         },
-        hideLoginDialog (state){
+        hideLoginDialog(state) {
             state.loginDialog = false
         },
-        setUserId(state, value){
+        setUserId(state, value) {
             state.UserId = value;
         },
-        setLibraryId(state, value){
+        setLibraryId(state, value) {
             state.LibraryId = value;
+        },
+        setErrorMessage(state, value) {
+            state.error_message = value;
         }
     },
     actions: {},
