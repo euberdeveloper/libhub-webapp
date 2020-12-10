@@ -8,10 +8,10 @@
         :key="library._id"
         @click="openLibrary(library)"
       >
-        <v-img height="100%" src="https://cdn.vuetifyjs.com/images/cards/server-room.jpg">
+        <v-img height="100%" src="@/assets/library_background.jpeg">
           <v-row align="end" class="fill-height">
             <v-col align-self="start" class="pa-0" cols="12">
-              <v-avatar class="profile" color="grey" size="400" tile>
+              <v-avatar class="profile" color="grey" size="250" tile>
                 <v-carousel cycle show-arrows-on-hover progress interval="5000">
                   <v-carousel-item
                     v-for="(resource, i) in library.schema.resources"
