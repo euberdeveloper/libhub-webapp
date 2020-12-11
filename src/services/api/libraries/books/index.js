@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 //import CONFIG from '@/config';
 
 //const API_ROUTE = `${CONFIG.HOSTNAME}/libraries`;
@@ -13,4 +14,26 @@ export async function getBooks(lid) {
 export async function retrieveBookInfo(ISBN) {
     const response = await axios.get("https://lib-hub.herokuapp.com/api/v1/isbn/" + ISBN);
     return response.data;
+}
+
+
+export function getISBN_from_image(image_path) {
+    let Quagga = require('quagga').default
+    Quagga.decodeSingle({
+            decoder: {
+                readers: ["code_128_reader", "code_39_reader", "code_39_vin_reader", "ean_reader", "ean_8_reader", "upc_reader", "upc_e_reader", "codabar_reader"], // List of active readers
+            },
+            locate: true, // try to locate the barcode in the image
+            numOfWorkers: 0,
+            src: image_path, // or 'data:image/jpg;base64,' + data
+        },
+        function(result) {
+            if (result.codeResult) {
+                this.$store.commit('setIsbnObatinedFromImage', result.codeResult.cod)
+            } else {
+                this.$store.commit('setIsbnObatinedFromImage', '')
+            }
+        }
+    );
+
 }

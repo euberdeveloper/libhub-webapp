@@ -29,7 +29,12 @@
           </v-row>
           <v-row align="center">
             <v-col>
-              <v-text-field v-model="title" id="title" placeholder="title"></v-text-field>
+              <v-text-field
+                v-model="title"
+                id="title"
+                placeholder="title"
+                label="title"
+              ></v-text-field>
             </v-col>
           </v-row>
           <v-row align="center">
@@ -38,6 +43,7 @@
                 v-model="authors"
                 id="authors"
                 placeholder="authors"
+                label="authors"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -47,6 +53,7 @@
                 v-model="publisher"
                 id="publisher"
                 placeholder="publisher"
+                label="publisher"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -56,6 +63,7 @@
                 v-model="publicationYear"
                 id="publicationYear"
                 placeholder="publicationYear"
+                label="publicationYear"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -65,6 +73,7 @@
                 v-model="language"
                 id="language"
                 placeholder="language"
+                label="language"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -74,6 +83,7 @@
                 v-model="edition"
                 id="edition"
                 placeholder="edition"
+                label="edition"
               ></v-text-field>
             </v-col>
           </v-row>
