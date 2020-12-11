@@ -3,31 +3,47 @@
     <v-row justify="center">
       <v-card
         class="ma-2"
-        max-width="460"
-        v-for="(book, index) in books"
+        max-width="450"
+        max-height="350"
+        v-for="(book, index) in handledBooks"
         :key="index"
-        
       >
-        <v-img
-          height="100%"
-          src="@/assets/book_background.jpg"
-        >
-          <v-row align="end" class="fill-height">
-            <v-col align-self="start" class="pa-0" cols="12">
-              <v-avatar class="profile" color="grey" size="200" tile>
-                <v-carousel cycle show-arrows-on-hover progress interval="5000">
-                  <v-carousel-item
-                    v-for="(picture, i) in book.pictures"
-                    :key="i"
-                    :src="picture"
-                  ></v-carousel-item>
-                </v-carousel>
-              </v-avatar>
+        <v-img height="100%" src="@/assets/book_background.png">
+          <v-row >
+            <v-col class="pa-0" cols="6">
+              <v-carousel
+                style="height: 250px; width: 200px"
+                cycle
+                show-arrows-on-hover
+                v-model="selectedBook"
+                progress
+                interval="5000"
+                hide-delimiters
+              >
+                <v-carousel-item v-for="(picture, i) in book.pictures" :key="i">
+                  <v-img style="height: 250px; width: auto" :src="picture">
+                  </v-img>
+                </v-carousel-item>
+              </v-carousel>
             </v-col>
-            <v-col class="py-0">
+            <v-col  cols="6">
+              <v-rating
+                empty-icon="mdi-star-outline"
+                full-icon="mdi-star"
+                hover
+                length="5"
+                size="20"
+                value="3"
+                background-color="orange lighten-3"
+                color="orange"
+              ></v-rating>
+            </v-col>
+          </v-row>
+          <v-row >
+            <v-col>
               <v-list-item color="rgba(0, 0, 0, .4)" dark>
                 <v-list-item-content>
-                  <v-list-item-title class="title">
+                  <v-list-item-title >
                     {{ book.title }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
@@ -48,18 +64,33 @@
 import { getBooks } from "@/services/api/libraries/books/index.js";
 
 export default {
-    name: "DisplayBooks",
-    props: ["lname"],
-    data: () => ({
-        books: [],
-    }),
-    async mounted() {
-      try {
-        this.books = await getBooks(this.$store.state.LibraryId);
-        console.log(this.books[0].title);
-      } catch (error) {
-        this.$router.push("/error_page");
-      }
+  name: "DisplayBooks",
+  props: ["lname"],
+  data: () => ({
+    selectedBook: 0,
+    books: [],
+  }),
+  computed: {
+    handledBooks() {
+      return this.books.map((book) => ({
+        ...book,
+        pictures:
+          book.pictures.length === 0
+            ? [
+                "/assets/blank.png",
+                "/assets/jojo_doggo.png",
+                "/assets/doggo.png",
+              ]
+            : book.pictures,
+      }));
+    },
+  },
+  async mounted() {
+    try {
+      this.books = await getBooks(this.$store.state.LibraryId);
+    } catch (error) {
+      this.$router.push("/error_page");
+    }
   },
 };
 </script>

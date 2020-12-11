@@ -10,6 +10,17 @@
       >
         <v-img height="100%" src="@/assets/library_background.jpeg">
           <v-row align="end" class="fill-height">
+            <v-col align-self="start" class="pa-0" cols="12">
+              <v-avatar class="profile" color="grey" size="250" tile>
+                <v-carousel cycle show-arrows-on-hover progress interval="5000">
+                  <v-carousel-item
+                    v-for="(resource, i) in library.schema.resources"
+                    :key="i"
+                    :src="resource"
+                  ></v-carousel-item>
+                </v-carousel>
+              </v-avatar>
+            </v-col>
             <v-col class="py-0">
               <v-list-item color="rgba(0, 0, 0, .4)" dark>
                 <v-list-item-content>

@@ -4,7 +4,7 @@
       <v-icon>mdi-tag-plus</v-icon>
       <span>New Tag</span>
     </v-btn>
-  
+
     <vue-tree-list
       @delete-node="deleteElement"
       @add-node="onAddNode"
@@ -27,16 +27,39 @@
       <span class="icon ma-1" slot="leafNodeIcon"
         ><v-icon>mdi-tag</v-icon></span
       >
-      <span class="icon ma-1" slot="treeNodeIcon"
-        ><v-icon>mdi-tag-multiple</v-icon></span
-      >
+      <template v-slot:treeNodeIcon="slotProps">
+        <span
+          class="icon ma-1"
+          slot="treeNodeIcon"
+        >
+          <v-menu offset-y :close-on-content-click="false" >
+            <template v-slot:activator="{ on }">
+              <v-icon v-on="on" :style="getColorStyle(slotProps)"
+                >mdi-tag-multiple
+              </v-icon>
+            </template>
+            <v-card>
+              <v-row>
+                <v-color-picker
+                  persistent
+                  v-model="picker"
+                  elevation="15"
+                  @update:color="changeColor(slotProps)"
+                  hide-canvas
+                  hide-mode-switch
+                ></v-color-picker>
+              </v-row>
+            </v-card>
+          </v-menu>
+        </span>
+      </template>
     </vue-tree-list>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { VueTreeList, Tree , TreeNode} from "vue-tree-list";
+import { VueTreeList, Tree, TreeNode } from "vue-tree-list";
 
 export default Vue.extend({
   name: "TagTree",
@@ -47,12 +70,12 @@ export default Vue.extend({
     return {
       //this must be taken from the database from the user profile
       newTree: {},
+      picker: null,
       labels: new Tree([
         {
           name: "Fantasy",
           id: 1,
           pid: 0,
-          //  dragDisabled: true,
           addLeafNodeDisabled: true,
           children: [
             {
@@ -60,7 +83,7 @@ export default Vue.extend({
               id: 2,
               isLeaf: false,
               pid: 1,
-              addLeafNodeDisabled: true
+              addLeafNodeDisabled: true,
             },
           ],
         },
@@ -82,21 +105,33 @@ export default Vue.extend({
   methods: {
     onAddNode(params) {
       params.addLeafNodeDisabled = true;
+      params.color = "green";
+    },
+    changeColor(prop) {
+      prop.model.color = this.picker.hex;
+    },
+    getColorStyle(color) {
+      color = color.model.color || "red";
+      return { color };
     },
     addLabel: function () {
-      var node = new TreeNode({ name: "New Tag", isLeaf: false, addLeafNodeDisabled : true});
+      var node = new TreeNode({
+        name: "New Tag",
+        isLeaf: false,
+        addLeafNodeDisabled: true,
+        color: "green",
+      });
       if (!this.labels.children) this.labels.children = [];
       this.labels.addChildren(node);
     },
     deleteElement(node) {
       node.remove();
-    },
+    }
   },
 });
 </script>
-
 <style>
-  .icon:hover {
-    cursor: pointer;
-  }
+.icon:hover {
+  cursor: pointer;
+}
 </style>
