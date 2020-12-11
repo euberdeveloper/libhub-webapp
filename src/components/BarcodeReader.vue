@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { getISBN_from_image } from "@/services/api/libraries/books/index.js";
+import { getISBN_from_image } from "@/services/api/isbn/index.js";
 
 export default {
   name: "BarcodeReader",
@@ -11,10 +11,9 @@ export default {
     isbn: "",
   }),
   methods: {
-    get() {
-      getISBN_from_image("/home/seb/Desktop/newFrontEnd/src/assets/BarCode.jpg");
-      this.isbn = this.$store.state.isbn_obtained_from_image;
-      console.log(this.isbn);
+    async get() {
+      this.isbn = await getISBN_from_image("./assets/BarCode.jpg");
+      console.log(this.isbn)
     },
   },
 };
