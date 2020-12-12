@@ -225,11 +225,13 @@ export default {
         this.$refs.form.$el["BarcodeImage"].files[0] &&
         this.$refs.form.$el["BarcodeImage"].files[0].type.startsWith("image")
       ) {
-        this.ISBN = await getISBN_from_image(
-          window.URL.createObjectURL(
-            this.$refs.form.$el["BarcodeImage"].files[0]
-          )
-        );
+        try {
+          this.ISBN = await getISBN_from_image(
+            window.URL.createObjectURL(this.$refs.form.$el["BarcodeImage"].files[0])
+          );
+        } catch (error) {
+          alert("ISBN not detected");
+        }
       } else {
         alert("file must be an image");
       }
