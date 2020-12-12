@@ -11,7 +11,7 @@ export default new Vuex.Store({
         BookId: "",
         loginDialog: false,
         error_message: "ciao sono un messaggio di errore generico che può essere modificato :)",
-        isbn_obtained_from_image: ""
+        isbn_obtained_from_image: "",
     },
     mutations: {
         showLoginDialog(state) {

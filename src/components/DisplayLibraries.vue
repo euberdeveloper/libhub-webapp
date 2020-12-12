@@ -71,13 +71,14 @@ export default {
   methods: {
     openLibrary(library) {
       this.$store.commit("setLibraryId", library._id);
-      this.$router.push("/libraries/" + library._id).catch(()=>{});
+      this.$router.push("/libraries/" + library._id).catch(() => {});
     },
   },
   async mounted() {
     try {
       this.libraries = await getLibraries();
     } catch (error) {
+      this.$store.commit("setErrorMessage", error);
       this.$router.push("/error_page");
     }
   },
