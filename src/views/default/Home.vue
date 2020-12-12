@@ -14,10 +14,9 @@
 
     <v-row justify="center">
       <v-dialog v-model="showLoginDialog" max-width="600px">
-        <log-in-form/>
+        <log-in-form />
       </v-dialog>
     </v-row>
-    
   </v-container>
 </template>
 
@@ -32,7 +31,7 @@ export default {
   components: {
     SignupForm,
     AboutUs,
-    LogInForm
+    LogInForm,
   },
 
   data: () => ({
@@ -40,28 +39,25 @@ export default {
   }),
   methods: {
     login() {
-      this.router.push("/login");
+      this.router.push("/login"); // IS this stil used?
     },
-    hideLoginDialog (){
-      this.$store.commit('hideLoginDialog')
-    }
+    hideLoginDialog() {
+      this.$store.commit("hideLoginDialog");
+    },
   },
-  computed:{
-    showLoginDialog  :{
-      get : function (){
-        return this.$store.state.loginDialog
+  computed: {
+    showLoginDialog: {
+      get: function () {
+        return this.$store.state.loginDialog;
       },
-      set : function (value){
-        if (value){
-          this.$store.commit('showLoginDialog')
+      set: function (value) {
+        if (value) {
+          this.$store.commit("showLoginDialog");
+        } else {
+          this.$store.commit("hideLoginDialog");
         }
-        else{
-          this.$store.commit('hideLoginDialog')
-        }
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
-
-

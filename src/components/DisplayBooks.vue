@@ -57,18 +57,44 @@
         </v-img>
       </v-card>
     </v-row>
+    <v-btn
+      height="50"
+      width="50"
+      color="white"
+      v-b-tooltip.hover
+      title="Add book to this library"
+      elevation="0"
+      tile
+      @click="open_InsertBookForm_Dialog"
+    >
+      <v-icon x-large color="#C62828">mdi-book-plus</v-icon>
+    </v-btn>
   </v-container>
 </template>
+
 <script>
 import { getBooks } from "@/services/api/libraries/books/index.js";
+import { mdiBookPlus } from "@mdi/js";
 
 export default {
   name: "DisplayBooks",
+
+  components: {
+    // InsertBookForm,
+  },
   props: ["lid"],
   data: () => ({
     selectedBook: 0,
     books: [],
+    icons: {
+      mdiBookPlus,
+    },
   }),
+  methods: {
+    open_InsertBookForm_Dialog() {
+      this.$store.commit("show_InsertBookForm_Dialog");
+    },
+  },
   computed: {
     handledBooks() {
       return this.books.map((book) => ({

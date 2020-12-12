@@ -12,6 +12,7 @@ export default new Vuex.Store({
         loginDialog: false,
         error_message: "ciao sono un messaggio di errore generico che può essere modificato :)",
         isbn_obtained_from_image: "",
+        InsertBookForm_Dialog: false
     },
     mutations: {
         showLoginDialog(state) {
@@ -31,6 +32,12 @@ export default new Vuex.Store({
         },
         setIsbnObatinedFromImage(state, value) {
             state.isbn_obtained_from_image = value
+        },
+        show_InsertBookForm_Dialog(state) {
+            state.InsertBookForm_Dialog = true
+        },
+        hide_InsertBookForm_Dialog(state) {
+            state.InsertBookForm_Dialog = false
         }
     },
     actions: {},
