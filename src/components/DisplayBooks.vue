@@ -9,7 +9,7 @@
         :key="index"
       >
         <v-img height="100%" src="@/assets/book_background.png">
-          <v-row >
+          <v-row>
             <v-col class="pa-0" cols="6">
               <v-carousel
                 style="height: 250px; width: 200px"
@@ -21,12 +21,11 @@
                 hide-delimiters
               >
                 <v-carousel-item v-for="(picture, i) in book.pictures" :key="i">
-                  <v-img style="height: 250px; width: auto" :src="picture">
-                  </v-img>
+                  <v-img style="height: 250px; width: auto" :src="picture"> </v-img>
                 </v-carousel-item>
               </v-carousel>
             </v-col>
-            <v-col  cols="6">
+            <v-col cols="6">
               <v-rating
                 empty-icon="mdi-star-outline"
                 full-icon="mdi-star"
@@ -39,11 +38,11 @@
               ></v-rating>
             </v-col>
           </v-row>
-          <v-row >
+          <v-row>
             <v-col>
               <v-list-item color="rgba(0, 0, 0, .4)" dark>
                 <v-list-item-content>
-                  <v-list-item-title >
+                  <v-list-item-title>
                     {{ book.title }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
@@ -76,11 +75,7 @@ export default {
         ...book,
         pictures:
           book.pictures.length === 0
-            ? [
-                "/assets/blank.png",
-                "/assets/jojo_doggo.png",
-                "/assets/doggo.png",
-              ]
+            ? ["/assets/blank.png", "/assets/jojo_doggo.png", "/assets/doggo.png"]
             : book.pictures,
       }));
     },
