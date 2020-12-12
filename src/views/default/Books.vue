@@ -7,7 +7,6 @@ import DisplayBooks from '@/components/DisplayBooks.vue'
 
 export default {
   name: "Books",
-  props: ["id"],
   components:{
     DisplayBooks,
   },

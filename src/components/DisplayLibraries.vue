@@ -71,7 +71,7 @@ export default {
   methods: {
     openLibrary(library) {
       this.$store.commit("setLibraryId", library._id);
-      this.$router.push("/libraries/" + library.name + "/books").catch(()=>{});
+      this.$router.push("/libraries/" + library._id).catch(()=>{});
     },
   },
   async mounted() {

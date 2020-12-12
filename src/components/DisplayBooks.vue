@@ -33,7 +33,7 @@
                 hover
                 length="5"
                 size="20"
-                value="3"
+                :value="3"
                 background-color="orange lighten-3"
                 color="orange"
               ></v-rating>
@@ -65,7 +65,7 @@ import { getBooks } from "@/services/api/libraries/books/index.js";
 
 export default {
   name: "DisplayBooks",
-  props: ["lname"],
+  props: ["lid"],
   data: () => ({
     selectedBook: 0,
     books: [],
@@ -87,8 +87,9 @@ export default {
   },
   async mounted() {
     try {
-      this.books = await getBooks(this.$store.state.LibraryId);
+      this.books = await getBooks(this.$route.params.lid);
     } catch (error) {
+      this.$store.commit("setErrorMessage", "Naimoli gay");
       this.$router.push("/error_page");
     }
   },

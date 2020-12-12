@@ -44,7 +44,7 @@ const routes = [{
         }
     },
     {
-        path: '/libraries/:lname/books',
+        path: '/libraries/:lid',
         name: 'Books',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -67,6 +67,19 @@ const routes = [{
                 import ( /* webpackChunkName: "tags" */ '../views/default/Tags.vue'),
             bar: () =>
                 import ( /* webpackChunkName: "tags" */ '../views/bars/AppBar.vue'),
+        }
+    },
+    {
+        path: '/user',
+        name: 'User',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        components: {
+            default: () =>
+                import ( /* webpackChunkName: "user" */ '../views/default/User.vue'),
+            bar: () =>
+                import ( /* webpackChunkName: "user" */ '../views/bars/AppBar.vue'),
         }
     },
     {

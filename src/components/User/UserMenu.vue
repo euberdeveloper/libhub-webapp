@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-menu bottom min-width="200px" rounded offset-y left>
+      <v-menu bottom min-width="200px" rounded offset-y left >
         <template v-slot:activator="{ on }">
           <v-btn icon x-large v-on="on">
             <v-avatar>
@@ -26,9 +26,9 @@
                 {{ this.uid }}
               </p>
               <v-divider class="my-3"></v-divider>
-              <v-btn depressed rounded text> Edit Account </v-btn>
+              <v-btn depressed rounded text to="/user"> Edit Account </v-btn>
               <v-divider class="my-3"></v-divider>
-              <v-btn depressed rounded text> Disconnect </v-btn>
+              <v-btn depressed rounded text @click="clearUID"> Disconnect </v-btn>
             </div>
           </v-list-item-content>
         </v-card>
@@ -43,6 +43,12 @@ export default {
   data : () => ({
     uid : "",
   }),
+  methods:{
+    clearUID(){
+      this.$store.state.UserId = "";
+      this.$router.push("/");
+    }
+  },
   mounted(){
     this.uid = this.$store.state.UserId;
   }

@@ -9,7 +9,6 @@
 
 export default {
   name: "Dashboard",
-  props: ["id"],
   data: () => ({
   }),
 };
