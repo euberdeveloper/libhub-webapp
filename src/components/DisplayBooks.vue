@@ -1,9 +1,9 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row justify="center">
       <v-card
         class="ma-2"
-        max-width="450"
+        max-width="350"
         max-height="350"
         v-for="(book, index) in handledBooks"
         :key="index"
@@ -21,7 +21,8 @@
                 hide-delimiters
               >
                 <v-carousel-item v-for="(picture, i) in book.pictures" :key="i">
-                  <v-img style="height: 250px; width: auto" :src="picture"> </v-img>
+                  <v-img style="height: 250px; width: auto" :src="picture">
+                  </v-img>
                 </v-carousel-item>
               </v-carousel>
             </v-col>
@@ -57,24 +58,20 @@
         </v-img>
       </v-card>
     </v-row>
-    <v-btn
-      height="50"
-      width="50"
-      color="white"
-      v-b-tooltip.hover
-      title="Add book to this library"
-      elevation="0"
-      tile
-      @click="open_InsertBookForm_Dialog"
-    >
-      <v-icon x-large color="#C62828">mdi-book-plus</v-icon>
-    </v-btn>
+    <v-row>
+      <v-card-text style="height: 100px; position: relative">
+        <v-fab-transition>
+          <v-btn color="#F83456" title="Add book to this library" dark absolute top right fab @click="open_InsertBookForm_Dialog">
+            <v-icon >mdi-book-plus</v-icon>
+          </v-btn>
+        </v-fab-transition>
+      </v-card-text>
+    </v-row>
   </v-container>
 </template>
 
 <script>
 import { getBooks } from "@/services/api/libraries/books/index.js";
-import { mdiBookPlus } from "@mdi/js";
 
 export default {
   name: "DisplayBooks",
@@ -86,9 +83,6 @@ export default {
   data: () => ({
     selectedBook: 0,
     books: [],
-    icons: {
-      mdiBookPlus,
-    },
   }),
   methods: {
     open_InsertBookForm_Dialog() {
@@ -101,7 +95,11 @@ export default {
         ...book,
         pictures:
           book.pictures.length === 0
-            ? ["/assets/blank.png", "/assets/jojo_doggo.png", "/assets/doggo.png"]
+            ? [
+                "/assets/blank.png",
+                "/assets/jojo_doggo.png",
+                "/assets/doggo.png",
+              ]
             : book.pictures,
       }));
     },
@@ -110,7 +108,7 @@ export default {
     try {
       this.books = await getBooks(this.$route.params.lid);
     } catch (error) {
-      this.$store.commit("setErrorMessage", "Naimoli gay");
+      this.$store.commit("setErrorMessage", "Missing Book");
       this.$router.push("/error_page");
     }
   },
