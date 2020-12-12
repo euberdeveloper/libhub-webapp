@@ -3,8 +3,8 @@
     <v-row justify="center">
       <v-card
         class="ma-2"
-        max-width="350"
-        max-height="350"
+        max-width="370"
+        max-height="330"
         v-for="(book, index) in handledBooks"
         :key="index"
       >
@@ -32,11 +32,25 @@
                 full-icon="mdi-star"
                 hover
                 length="5"
-                size="20"
+                size="16"
                 :value="3"
                 background-color="orange lighten-3"
                 color="orange"
               ></v-rating>
+              <div class="d-flex justify-end">
+                <v-btn class="mr-1" x-small fab dark color="#62000F"
+                  ><v-icon title="Edit Book">mdi-pencil</v-icon></v-btn
+                >
+                <v-btn
+                  class="mr-1"
+                  x-small
+                  fab
+                  dark
+                  color="#62000F"
+                  @click="deleteBook(book._id)"
+                  ><v-icon title="Delete Book">mdi-delete</v-icon></v-btn
+                >
+              </div>
             </v-col>
           </v-row>
           <v-row>
@@ -59,39 +73,66 @@
       </v-card>
     </v-row>
     <v-row>
-      <v-card-text style="height: 100px; position: relative">
-        <v-fab-transition>
-          <v-btn color="#F83456" title="Add book to this library" dark absolute top right fab @click="open_InsertBookForm_Dialog">
-            <v-icon >mdi-book-plus</v-icon>
-          </v-btn>
-        </v-fab-transition>
-      </v-card-text>
+      <v-col cols="6">
+        <v-card-text class="FAB-23">
+          <v-fab-transition>
+            <v-btn
+              color="#F83456"
+              title="Add book to this library"
+              dark
+              absolute
+              bottom
+              right
+              fab
+              @click="open_InsertBookForm_Dialog"
+            >
+              <v-icon>mdi-book-plus</v-icon>
+            </v-btn>
+          </v-fab-transition>
+        </v-card-text>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { getBooks } from "@/services/api/libraries/books/index.js";
+import {
+  getBooks,
+  deleteLibrariesLidBooksBid,
+} from "@/services/api/libraries/books/index.js";
 
 export default {
   name: "DisplayBooks",
-
-  components: {
-    // InsertBookForm,
-  },
   props: ["lid"],
   data: () => ({
     selectedBook: 0,
-    books: [],
+    loading: false,
   }),
   methods: {
     open_InsertBookForm_Dialog() {
       this.$store.commit("show_InsertBookForm_Dialog");
     },
+    async deleteBook(bid) {
+      if (!this.loading) {
+        try {
+          this.loading = true;
+          await deleteLibrariesLidBooksBid(this.$route.params.lid, bid);
+        } catch (error) {
+          this.$store.commit("setErrorMessage", error);
+          this.$router.push("/error_page");
+        } finally {
+          this.loading = false;
+        }
+        this.$store.state.books.splice(
+          this.$store.state.books.findIndex((b) => b._id === bid),
+          1
+        );
+      }
+    },
   },
   computed: {
     handledBooks() {
-      return this.books.map((book) => ({
+      return this.$store.state.books.map((book) => ({
         ...book,
         pictures:
           book.pictures.length === 0
@@ -106,7 +147,8 @@ export default {
   },
   async mounted() {
     try {
-      this.books = await getBooks(this.$route.params.lid);
+      const value = await getBooks(this.$route.params.lid);
+      this.$store.commit("setBooks", value);
     } catch (error) {
       this.$store.commit("setErrorMessage", "Missing Book");
       this.$router.push("/error_page");
@@ -114,3 +156,6 @@ export default {
   },
 };
 </script>
+
+<style>
+</style>

@@ -37,3 +37,12 @@ export function getISBN_from_image(image_path) {
     );
 
 }
+
+export async function postLibrariesLidBooks(lid, body){
+    const response = await axios.post(API_ROUTE+"/"+lid+"/books", body);
+    return response.data;
+}
+
+export async function deleteLibrariesLidBooksBid(lid, bid) {
+    await axios.delete(API_ROUTE+"/"+lid+"/books"+bid);
+}

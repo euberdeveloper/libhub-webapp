@@ -16,3 +16,9 @@
 .button-white{
     color: white;
 }
+
+.FAB-23 {
+    position: fixed;
+    bottom: 50.23px;
+    right: 10.23px;
+  }

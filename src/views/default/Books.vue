@@ -11,7 +11,7 @@
 
 <script>
 import DisplayBooks from "@/components/DisplayBooks.vue";
-import BookInsertForm from "../../components/BookInsertForm.vue";
+import BookInsertForm from "@/components/BookInsertForm.vue";
 
 export default {
   name: "Books",

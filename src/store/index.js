@@ -12,7 +12,10 @@ export default new Vuex.Store({
         loginDialog: false,
         error_message: "ciao sono un messaggio di errore generico che può essere modificato :)",
         isbn_obtained_from_image: "",
-        InsertBookForm_Dialog: false
+        InsertBookForm_Dialog: false,
+        InsertLibraryForm_Dialog: false,
+        libraries: [],
+        books: [],
     },
     mutations: {
         showLoginDialog(state) {
@@ -38,6 +41,24 @@ export default new Vuex.Store({
         },
         hide_InsertBookForm_Dialog(state) {
             state.InsertBookForm_Dialog = false
+        },
+        show_InsertLibraryForm_Dialog(state) {
+            state.InsertLibraryForm_Dialog = true
+        },
+        hide_InsertLibraryForm_Dialog(state) {
+            state.InsertLibraryForm_Dialog = false
+        },
+        setLibraries(state, value){
+            state.libraries = value;
+        },
+        addLibrary(state, library){
+            state.libraries.push(library);
+        },
+        setBooks(state, value){
+            state.books = value;
+        },
+        addBook(state, book){
+            state.books.push(book);
         }
     },
     actions: {},

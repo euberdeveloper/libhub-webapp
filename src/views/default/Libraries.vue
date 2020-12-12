@@ -1,20 +1,43 @@
 <template>
-  <display-libraries/>
+  <v-container>
+    <display-libraries />
+    <v-row justify="center">
+      <v-dialog v-model="show_InsertLibraryForm_Dialog" max-width="1000px">
+        <library-insert-form />
+      </v-dialog>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import DisplayLibraries from '@/components/DisplayLibraries.vue'
+import DisplayLibraries from "@/components/DisplayLibraries.vue";
+import LibraryInsertForm from "@/components/LibraryInsertForm.vue";
 
 export default {
   name: "Libraries",
-  components:{
+  components: {
     DisplayLibraries,
+    LibraryInsertForm,
   },
   data: () => ({
     uid: "none",
   }),
-  mounted(){
+  mounted() {
     this.uid = this.$store.state.UserId;
+  },
+  computed: {
+    show_InsertLibraryForm_Dialog: {
+      get: function () {
+        return this.$store.state.InsertLibraryForm_Dialog;
+      },
+      set: function (value) {
+        if (value) {
+          this.$store.commit("show_InsertLibraryForm_Dialog");
+        } else {
+          this.$store.commit("hide_InsertLibraryForm_Dialog");
+        }
+      },
+    },
   }
 };
 </script>
