@@ -70,6 +70,19 @@ const routes = [{
         }
     },
     {
+        path: '/friends',
+        name: 'Friends',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        components: {
+            default: () =>
+                import ( /* webpackChunkName: "user" */ '../views/default/Friends.vue'),
+            bar: () =>
+                import ( /* webpackChunkName: "user" */ '../views/bars/AppBar.vue'),
+        }
+    },
+    {
         path: '/user',
         name: 'User',
         // route level code-splitting

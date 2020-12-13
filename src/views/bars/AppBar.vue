@@ -58,6 +58,13 @@
             </v-list-item-icon>
             <v-list-item-title>Tags</v-list-item-title>
           </v-list-item>
+
+          <v-list-item @click="toFriends">
+            <v-list-item-icon>
+              <v-icon>mdi-account-group</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Friends</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -90,6 +97,9 @@ export default {
     },
     toTags() {
       this.$router.push("/tags").catch(() => {});
+    },
+    toFriends() {
+      this.$router.push("/friends").catch(() => {});
     },
   },
   components: {

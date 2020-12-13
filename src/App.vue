@@ -1,13 +1,11 @@
 <template>
   <v-app>
     
-
     <router-view name="bar"/>
 
-    <v-main>
+    <v-main class="fluid">
       <router-view/>
     </v-main>
-    
   </v-app>
 </template>
 

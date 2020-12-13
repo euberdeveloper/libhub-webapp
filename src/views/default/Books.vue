@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <display-books />
     <v-row justify="center">
       <v-dialog v-model="show_InsertBookForm_Dialog" max-width="1000px">

@@ -1,17 +1,17 @@
 <template>
-    <user-settings/>
+  <v-container fluid>
+    <user-settings />
+  </v-container>
 </template>
 
 <script>
-import UserSettings from '@/components/User/UserSettings.vue'
+import UserSettings from "@/components/User/UserSettings.vue";
 
 export default {
   name: "User",
-  components:{
-    UserSettings
+  components: {
+    UserSettings,
   },
-  data: () => ({
-    
-  }),
+  data: () => ({}),
 };
 </script>
