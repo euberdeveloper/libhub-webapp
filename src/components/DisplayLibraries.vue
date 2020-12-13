@@ -16,9 +16,8 @@
                     {{ library.name }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
-                    <span 
-                    >
-                      {{ library.owners.join('~') }}
+                    <span>
+                      {{ library.owners.join("~") }}
                     </span>
                   </v-list-item-subtitle>
                 </v-list-item-content>
@@ -34,7 +33,13 @@
                 @click="openLibrary(library)"
                 ><v-icon title="Open Library">mdi-open-in-new</v-icon></v-btn
               >
-              <v-btn class="mr-1" x-small fab dark color="#62000F"
+              <v-btn
+                class="mr-1"
+                x-small
+                fab
+                dark
+                color="#62000F"
+                @click="open_LibraryDetails_Dialog(library._id)"
                 ><v-icon title="Edit Library">mdi-pencil</v-icon></v-btn
               >
               <v-btn
@@ -71,6 +76,12 @@
         </v-card-text>
       </v-col>
     </v-row>
+
+    <v-row justify="center">
+      <v-dialog v-model="show_LibraryDetails_Dialog" max-width="1000px">
+        <library-details-dialog />
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 
@@ -79,6 +90,7 @@ import {
   getLibraries,
   deleteLibrariesLid,
 } from "@/services/api/libraries/index.js";
+import LibraryDetailsDialog from "@/components/LibraryDetailsDialog.vue";
 
 export default {
   name: "DisplayLibraries",
@@ -87,14 +99,23 @@ export default {
     info: null,
     loading: false,
   }),
+  components: {
+    LibraryDetailsDialog,
+  },
   methods: {
     openLibrary(library) {
       this.$store.commit("setLibraryId", library._id);
       this.$router.push("/libraries/" + library._id).catch(() => {});
     },
+
     open_InsertLibraryForm_Dialog() {
       this.$store.commit("show_InsertLibraryForm_Dialog");
     },
+
+    open_LibraryDetails_Dialog(lid) {
+      this.$store.commit("show_LibraryDetails_Dialog", lid);
+    },
+
     async deleteLibrary(lid) {
       if (!this.loading) {
         try {
@@ -112,6 +133,21 @@ export default {
         );
       }
     },
+  },
+
+  computed: {
+    show_LibraryDetails_Dialog: {
+      get: function () {
+        return this.$store.state.libraryDialog;
+      },
+      set: function (value) {
+        if (value) {
+          this.$store.commit("show_LibraryDetails_Dialog", null);
+        } else {
+          this.$store.commit("hide_LibraryDetails_Dialog");
+        }
+      },
+    }
   },
 
   async mounted() {

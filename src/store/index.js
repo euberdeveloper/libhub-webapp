@@ -9,11 +9,12 @@ export default new Vuex.Store({
         UserId: "",
         LibraryId: "",
         BookId: "",
-        loginDialog: false,
         error_message: "ciao sono un messaggio di errore generico che può essere modificato :)",
         isbn_obtained_from_image: "",
+        loginDialog: false,
         InsertBookForm_Dialog: false,
         InsertLibraryForm_Dialog: false,
+        libraryDialog: false,
         libraries: [],
         books: [],
     },
@@ -59,6 +60,14 @@ export default new Vuex.Store({
         },
         addBook(state, book){
             state.books.push(book);
+        },
+        show_LibraryDetails_Dialog(state, lid){
+            if(lid != null)
+                state.LibraryId = lid;
+            state.libraryDialog = true;
+        },
+        hide_LibraryDetails_Dialog(state){
+            state.libraryDialog = false;
         }
     },
     actions: {},

@@ -1,6 +1,7 @@
 <template>
   <v-container fluid>
     <display-libraries />
+
     <v-row justify="center">
       <v-dialog v-model="show_InsertLibraryForm_Dialog" max-width="1000px">
         <library-insert-form />
@@ -38,6 +39,7 @@ export default {
         }
       },
     },
+    
   }
 };
 </script>
