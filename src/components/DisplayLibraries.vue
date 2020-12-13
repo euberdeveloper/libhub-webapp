@@ -16,11 +16,9 @@
                     {{ library.name }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
-                    <span
-                      v-for="owner in library.owners.join('~')"
-                      :key="owner"
+                    <span 
                     >
-                      {{ owner }}
+                      {{ library.owners.join('~') }}
                     </span>
                   </v-list-item-subtitle>
                 </v-list-item-content>

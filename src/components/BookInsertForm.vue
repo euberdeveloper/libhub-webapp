@@ -124,6 +124,9 @@
               </v-btn>
             </v-col>
           </v-row>
+          <v-row>
+            {{ createPostBook  }}
+          </v-row>
         </v-container>
       </v-form>
     </v-card-text>
@@ -157,8 +160,8 @@ export default {
       language: "",
       condition: "",
       ubication: "",
-      labels: [""],
-      authors: [""],
+      labels: [],
+      authors: [],
       notes: "",
       ISBN_Rules: [
         (value) => !!value || "Required.",
@@ -178,7 +181,7 @@ export default {
           this.$store.commit("addBook", this.createBook(id));
         } catch (error) {
           this.$store.commit("setErrorMessage", error);
-          //this.$router.push("/error_page");
+          this.$router.push("/error_page");
         } finally {
           this.another_loading = false;
         }
@@ -186,18 +189,10 @@ export default {
     },
     createBook(id) {
       return {
-        _id: id,
-        LibraryId: this.$route.params.lid,
-        isbn: this.ISBN,
-        title: this.title,
-        authors: this.authors,
-        publisher: this.publisher,
-        publicationYear: this.publicationYear,
-        edition: this.edition,
-        condition: this.condition,
-        ubication: this.ubication,
-        labels: this.labels,
-        notes: this.notes,
+        _id: id  || null,
+        LibraryId: this.$route.params.lid || null,
+        pictures: [],
+        ...this.createPostBook
       };
     },
     reset() {
@@ -239,16 +234,17 @@ export default {
   },
   computed: {
     createPostBook() {
-      return { isbn: this.ISBN,
-        title: this.title,
-        authors: ["this.authors"],
-        publisher: this.publisher,
-        publicationYear: this.publicationYear,
-        edition: "",
-        condition: this.condition,
-        ubication: this.ubication,
-        labels: ["this.labels"],
-        notes: this.notes, };
+      return { 
+        isbn: this.ISBN || null,
+        title: this.title || null,
+        authors: this.authors,
+        publisher: this.publisher || null,
+        publicationYear: this.publicationYear || null,
+        edition: this.edition || null,
+        condition: this.condition || null,
+        ubication: this.ubication || null,
+        labels: this.labels,
+        notes: this.notes || null};
     },
     
   },

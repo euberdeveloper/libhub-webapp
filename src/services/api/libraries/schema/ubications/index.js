@@ -9,3 +9,7 @@ export async function getUbications(lid) {
     const response = await axios.get(API_ROUTE(lid));
     return response.data;
 }
+
+export async function postLibrariesLidSchemaUbications(lid, body) {
+    await axios.post(API_ROUTE(lid), body);
+ }

@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import { postLibraries } from "@/services/api/libraries/index.js";
-
+import { postLibraries  } from "@/services/api/libraries/index.js";
+import { postLibrariesLidSchemaUbications} from "@/services/api/libraries/schema/ubications/index.js";
 export default {
   name: "LibraryInsertForm",
   data() {
@@ -58,7 +58,8 @@ export default {
           this.loading = true;
           const id = await postLibraries(this.createName);
           this.$store.commit("addLibrary", this.createLibrary(id))
-
+          await postLibrariesLidSchemaUbications(id, this.createUbication("1"))
+          await postLibrariesLidSchemaUbications(id, this.createUbication("2"))
         } catch (error) {
           this.$store.commit("setErrorMessage", error);
           this.$router.push("/error_page");
@@ -72,6 +73,9 @@ export default {
     },
     createLibrary(id) {
       return {name: this.name, owners:["io","tu","egli"],  schema:{ubications:["1","2","3"], resources:[]}, _id: id};
+    },
+    createUbication(value){
+      return { ubication: value }
     }
   },
   computed: {

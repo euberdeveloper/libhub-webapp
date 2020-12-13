@@ -44,5 +44,5 @@ export async function postLibrariesLidBooks(lid, body){
 }
 
 export async function deleteLibrariesLidBooksBid(lid, bid) {
-    await axios.delete(API_ROUTE+"/"+lid+"/books"+bid);
+    await axios.delete(API_ROUTE+"/"+lid+"/books/"+bid);
 }
