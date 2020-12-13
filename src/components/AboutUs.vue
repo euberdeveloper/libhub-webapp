@@ -1,30 +1,45 @@
 <template>
-    <v-container >
-        <div :class="[`text-h2`]"
-              class="transition-swing">
-            About Us
-        </div>
-        <br>
+  <v-container>
+    <div :class="[`text-h2`]" class="transition-swing">About Us</div>
+    <br />
 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus suscipit orci sed orci convallis semper. Proin pharetra pretium facilisis. 
-        Suspendisse in enim elit. Phasellus iaculis, elit sed pulvinar lobortis, lorem elit finibus sapien, eu consectetur urna orci ut orci. Sed id quam lorem. 
-        Nullam pretium venenatis lobortis. Morbi sagittis semper lacus, at dictum magna convallis at. Pellentesque ut ante ut risus malesuada tristique id et magna. 
-        Etiam eu neque sit amet augue accumsan varius vitae eget libero. Mauris feugiat sit amet est sed lobortis. In hac habitasse platea dictumst. 
-        Fusce egestas tellus magna, at mattis massa hendrerit a. Mauris maximus tellus commodo neque placerat commodo. Vivamus convallis imperdiet luctus. 
-        Cras porta ligula eu arcu placerat, sed rhoncus nulla iaculis.
-        <br>
-        Proin faucibus, tortor id cursus gravida, augue ante viverra mi, vel ultrices metus nisl sit amet eros. 
-        Maecenas commodo pulvinar eros ac viverra. Nam nec nunc vehicula, facilisis ipsum sit amet, pretium magna. 
-        In lorem quam, pulvinar nec risus in, molestie tempus tortor. Nunc non tortor in neque ornare interdum in vel elit. 
-        Pellentesque ultricies nisl non vehicula dignissim. Aenean vel purus diam. Vestibulum tempus lacinia posuere. 
-        Nunc quis est ultricies, finibus eros vitae, posuere dolor. Aliquam consectetur consectetur neque, sit amet pulvinar sapien euismod vel. 
-        Aenean semper aliquet orci, iaculis iaculis lorem vestibulum finibus. Duis a tristique ex, in volutpat magna. 
-        Proin eget augue nec lorem facilisis mattis sit amet eget lectus. In sodales ante at tellus viverra, sed vehicula erat ultrices. Maecenas eu blandit velit.
-    </v-container>
+    We are not going to abandon libhub. We have designed an ambitious project
+    and since the beginning it was thought to be used by some members of the
+    team who had the problem of huge home libraries. We already developed this
+    main part and we could already use it for ourselves. We deem that some of
+    the functionalities that we did not manage to develop, are still important
+    to have a beautiful project that will go on our personal portfolio sites. We
+    choose vuetify as a frontend framework not only because it had a huge
+    quantity of components and consisted in a perfect material implementation,
+    but also because it made it very easy to build a responsive web application.
+    With not too much effort our site mobile support can become perfect and we
+    can extend it even for tablet devices. Nonetheless, we think that a mobile
+    application could be better and could make our project be reached by lots of
+    users. We have again divided the team in two subtems, according to our
+    commitments. One subteam will develop both a perfect responsive webapp,
+    making it also a pwa, while the other one will develop an hybrid mobile
+    application by using React Native. We think that having learnt vuejs will
+    make it very easy to learn React. We also are thinking about developing a
+    desktop application, which will be exactly the same of the web app by using
+    Electron. Given a site, electron creates a desktop application that works on
+    Windows, OSX and Linux, by creating a chromium instance that runs the site
+    and supports also the node js libraries that would not work in a normal
+    browser. By doing this we want to deliver to the user the possibility to
+    have an offline support of the service, that uses a local sqlite3 database
+    when the application is offline and synchronizes with the cloud mongodb when
+    it comes back online.
+    <br /><br />
+    If you want to have an awesome experince try to use the <strong> superUser Account </strong>
+    <br />
+    Username: <strong> the_one </strong>
+    <br />
+    Pass: <strong> nsfw</strong>
+
+  </v-container>
 </template>
 
 <script>
 export default {
-    name: 'AboutUs'
-}
+  name: "AboutUs",
+};
 </script>
