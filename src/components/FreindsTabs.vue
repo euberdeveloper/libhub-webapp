@@ -60,15 +60,20 @@
           </v-card>
         </v-tab-item>
         <v-tab-item>
-          <v-card class="pa-4" flat>
-            <v-toolbar dense floating class="mb-4">
+          <v-card class="pa-4 " flat>
+            <v-card dense floating tile class="mb-4 d-flex">
               <v-text-field
+                class="py-2 px-10"
                 hide-details
                 append-icon="mdi-magnify"
                 single-line
               ></v-text-field>
-            </v-toolbar>
-            <v-divider class="mb-2"></v-divider>
+            </v-card>
+            <v-divider class="mb-1"></v-divider>
+
+            <v-card flat class="mb-2">
+                <v-card-title> Pending Friend Requests </v-card-title>
+            </v-card>
 
             <v-card>
               <v-row class="align-center">
