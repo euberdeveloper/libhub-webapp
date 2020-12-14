@@ -79,7 +79,7 @@ const routes = [{
             default: () =>
                 import ( /* webpackChunkName: "user" */ '../views/default/Friends.vue'),
             bar: () =>
-                import ( /* webpackChunkName: "user" */ '../views/bars/AppBar.vue'),
+                import ( /* webpackChunkName: "user" */ '../views/bars/FriendBar.vue'),
         }
     },
     {
