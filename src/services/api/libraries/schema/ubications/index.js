@@ -1,15 +1,17 @@
 import axios from 'axios';
 
 //import CONFIG from '@/config';
+import { createHeader } from "@/config"
 
 //const API_ROUTE = `${CONFIG.HOSTNAME}/libraries`;
-const API_ROUTE = (lid) => `https://lib-hub.herokuapp.com/api/v1/libraries/${lid}/schema/ubications`;
+const API_ROUTE = (uid, lid) => `https://defacto-23.herokuapp.com/api/users/${uid}/libraries/${lid}/schema/ubications`;
 
-export async function getUbications(lid) {
-    const response = await axios.get(API_ROUTE(lid));
+export async function getUbications(uid, lid, token) {
+    const response = await axios.get(API_ROUTE(uid, lid), createHeader(token));
     return response.data;
 }
 
-export async function postLibrariesLidSchemaUbications(lid, body) {
-    await axios.post(API_ROUTE(lid), body);
+export async function postLibrariesLidSchemaUbications(uid, lid, body, token) {
+    await axios.post(API_ROUTE(uid, lid), body, createHeader(token));
  }
+
