@@ -5,8 +5,9 @@ import HomeBar from '../views/bars/HomeBar.vue'
 import ErrorPage from '../views/default/Error_page.vue'
 //import TagTree from '../components/TagTree.vue'
 import ErrorBar from '../views/bars/ErrorBar.vue'
-import BookInsertForm from '../components/BookInsertForm.vue'
+//import BookInsertForm from '../components/BookInsertForm.vue'
 //import BarcodeReader from '../components/BarcodeReader.vue'
+import Chat from '../views/default/Chat.vue'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -96,6 +97,35 @@ const routes = [{
         }
     },
     {
+        path: '/chat',
+        name: 'Chat',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        components: {
+            default: () =>
+                import ( /* webpackChunkName: "chat" */ '../views/default/Chat.vue'),
+            bar: () =>
+                import ( /* webpackChunkName: "chat" */ '../views/bars/AppBar.vue'),
+        }
+    },
+    {
+        path: '/users/:uid/verification/:token',
+        name: 'Verification',
+        components: {
+            default: () => import ( /* webpackChunkName: "chat" */ '../views/default/Verification.vue'),
+            bar: () => import ( /* webpackChunkName: "chat" */ '../views/bars/ErrorBar.vue')
+        }
+    },
+    {
+        path: '/user/:uid/password-recovery/:token',
+        name: 'RecoveryPassword',
+        components: {
+            default: () => import ( /* webpackChunkName: "chat" */ '../views/default/RecoveryPassword.vue'),
+            bar: () => import ( /* webpackChunkName: "chat" */ '../views/bars/ErrorBar.vue')
+        }
+    },
+    {
         path: '/error_page',
         name: 'Error_page',
         components: {
@@ -109,7 +139,7 @@ const routes = [{
         path: '/test_component',
         name: 'Test_component',
         components: {
-            default: BookInsertForm
+            default: Chat
         }
     }
 ]
