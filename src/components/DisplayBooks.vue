@@ -15,7 +15,6 @@
                 style="height: 250px; width: 200px"
                 cycle
                 show-arrows-on-hover
-                v-model="selectedBook"
                 progress
                 interval="5000"
                 hide-delimiters
@@ -31,14 +30,20 @@
                 empty-icon="mdi-star-outline"
                 full-icon="mdi-star"
                 hover
+                v-model="ratingValue"
                 length="5"
                 size="16"
-                :value="3"
                 background-color="orange lighten-3"
                 color="orange"
+                @input="reviewBook(book._id)"
               ></v-rating>
               <div class="d-flex justify-end">
-                <v-btn class="mr-1" x-small fab dark color="#62000F"
+                <v-btn
+                  class="mr-1"
+                  x-small
+                  fab
+                  dark
+                  @click="open_BookDetails_Dialog(book)"
                   ><v-icon title="Edit Book">mdi-pencil</v-icon></v-btn
                 >
                 <v-btn
@@ -46,7 +51,6 @@
                   x-small
                   fab
                   dark
-                  color="#62000F"
                   @click="deleteBook(book._id)"
                   ><v-icon title="Delete Book">mdi-delete</v-icon></v-btn
                 >
@@ -92,6 +96,36 @@
         </v-card-text>
       </v-col>
     </v-row>
+
+    <v-dialog v-model="dialog" max-width="290">
+      <v-card>
+        <v-card-title class="headline"> Review Book </v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-textarea outlined v-model="reviewText"></v-textarea>
+          </v-row>
+          <v-row>
+            <v-rating
+              empty-icon="mdi-star-outline"
+              full-icon="mdi-star"
+              hover
+              v-model="ratingValue"
+              length="5"
+              size="16"
+              background-color="orange lighten-3"
+              color="orange"
+            ></v-rating>
+          </v-row>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn color="green darken-1" text @click="dialog = false">
+            Ok
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -101,25 +135,59 @@ import {
   deleteLibrariesLidBooksBid,
 } from "@/services/api/libraries/books/index.js";
 
+import {
+  //PostReview
+  } from "@/services/api/libraries/books/reviews/index.js";
+
 export default {
   name: "DisplayBooks",
   props: ["lid"],
   data: () => ({
-    selectedBook: 0,
     loading: false,
+    dialog: false,
+    ratingValue: 0,
+    reviewText: "",
+    reviewBookId: null,
   }),
   methods: {
     open_InsertBookForm_Dialog() {
       this.$store.commit("show_InsertBookForm_Dialog");
     },
+    open_BookDetails_Dialog(book) {
+      this.$store.commit("setBook", book);
+      this.$store.commit("show_BookDetails_Dialog");
+    },
+    openReviewDialog(bid){
+      this.reviewBookId = bid;
+      this.dialog = true;
+    },
+    async reviewBook(bid) {
+      if (!this.loading) {
+        try {
+          console.log(bid)
+          this.loading = true
+          this.dialog = true
+        } catch(error) {
+          console.log(error)
+        }finally{
+          this.loading = false
+        }
+      }
+    },
     async deleteBook(bid) {
       if (!this.loading) {
         try {
           this.loading = true;
-          await deleteLibrariesLidBooksBid(this.$route.params.lid, bid);
+          const user = this.$store.getters.getUser;
+          await deleteLibrariesLidBooksBid(
+            user._id,
+            this.$route.params.lid,
+            bid,
+            localStorage.getItem("accessToken")
+          );
         } catch (error) {
           this.$store.commit("setErrorMessage", error);
-          this.$router.push("/error_page");
+          //this.$router.push("/error_page");
         } finally {
           this.loading = false;
         }
@@ -132,22 +200,21 @@ export default {
   },
   computed: {
     handledBooks() {
-      return this.$store.state.books.map((book) => ({
+      return this.$store.getters.getBooks.map((book) => ({
         ...book,
         pictures:
-          book.pictures.length === 0
-            ? [
-                "/assets/blank.png",
-                "/assets/jojo_doggo.png",
-                "/assets/doggo.png",
-              ]
-            : book.pictures,
+          book.pictures.length === 0 ? ["/assets/blank.png"] : book.pictures,
       }));
     },
   },
   async mounted() {
     try {
-      const value = await getBooks(this.$route.params.lid);
+      const user = this.$store.getters.getUser;
+      const value = await getBooks(
+        user._id,
+        this.$route.params.lid,
+        localStorage.getItem("accessToken")
+      );
       this.$store.commit("setBooks", value);
     } catch (error) {
       this.$store.commit("setErrorMessage", "Missing Book");
