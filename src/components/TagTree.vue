@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-btn @click="addLabel" color="success" class="mb-2">
       <v-icon>mdi-tag-plus</v-icon>
       <span>New Tag</span>
@@ -28,11 +28,8 @@
         ><v-icon>mdi-tag</v-icon></span
       >
       <template v-slot:treeNodeIcon="slotProps">
-        <span
-          class="icon ma-1"
-          slot="treeNodeIcon"
-        >
-          <v-menu offset-y :close-on-content-click="false" >
+        <span class="icon ma-1" slot="treeNodeIcon">
+          <v-menu offset-y :close-on-content-click="false">
             <template v-slot:activator="{ on }">
               <v-icon v-on="on" :style="getColorStyle(slotProps)"
                 >mdi-tag-multiple
@@ -57,9 +54,14 @@
   </v-container>
 </template>
 
-<script lang="ts">
+<script >
+import { 
+  getLabelsLid
+   } from "@/services/api/libraries/index.js";
 import Vue from "vue";
 import { VueTreeList, Tree, TreeNode } from "vue-tree-list";
+
+
 
 export default Vue.extend({
   name: "TagTree",
@@ -71,35 +73,8 @@ export default Vue.extend({
       //this must be taken from the database from the user profile
       newTree: {},
       picker: null,
-      labels: new Tree([
-        {
-          name: "Fantasy",
-          id: 1,
-          pid: 0,
-          addLeafNodeDisabled: true,
-          children: [
-            {
-              name: "Romantic Fantasy",
-              id: 2,
-              isLeaf: false,
-              pid: 1,
-              addLeafNodeDisabled: true,
-            },
-          ],
-        },
-        {
-          name: "Horror",
-          id: 3,
-          pid: 0,
-          addLeafNodeDisabled: true,
-        },
-        {
-          name: "Crime",
-          id: 4,
-          pid: 0,
-          addLeafNodeDisabled: true,
-        },
-      ]),
+      labels_get: [],
+      labels: new Tree([]),
     };
   },
   methods: {
@@ -126,6 +101,54 @@ export default Vue.extend({
     },
     deleteElement(node) {
       node.remove();
+    },
+
+    createNode(node){
+      let parent;
+      if(node.parent === null){
+        parent = "0";
+      }else{
+        parent = node.parent
+      }
+      return{
+          name: node.name,
+          id: node._id,
+          pid: parent,
+          color : node.color,
+          addLeafNodeDisabled: true,
+          children:node.children}
+    },
+    listToTree(list) {
+        let map = {},
+            node,
+            roots = [],
+            i;
+
+      for (i = 0; i < list.length; i += 1) {
+        map[list[i]._id] = i; // initialize the map
+        list[i].children = [];
+      }
+
+      for (i = 0; i < list.length; i += 1) {
+        
+        node = this.createNode(list[i]);
+        if (node.pid !== "0") {
+          list[map[node.pid]].children.push(node);
+        } else {
+          roots.push(node);
+        }
+      }
+      return roots
+    },
+  },
+  async mounted() {
+    const user = this.$store.getters.getUser;
+    try {
+      this.labels_get = await getLabelsLid(user._id, this.$route.params.lid, localStorage.getItem("accessToken"))
+    }catch{
+      this.labels_get = []
+    }finally{
+      this.labels = this.labels_get.length > 0 ? new Tree(this.listToTree(this.labels_get)) : new Tree([]);
     }
   },
 });

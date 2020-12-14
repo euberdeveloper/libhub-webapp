@@ -44,7 +44,7 @@ const routes = [{
         }
     },
     {
-        path: '/libraries/:lid',
+        path: '/libraries/:lid/books',
         name: 'Books',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -57,7 +57,7 @@ const routes = [{
         }
     },
     {
-        path: '/tags',
+        path: '/libraries/:lid/tags',
         name: 'Tags',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

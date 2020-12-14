@@ -4,7 +4,7 @@
       <v-card
         class="ma-2"
         max-width="370"
-        v-for="library in $store.state.libraries"
+        v-for="library in handledLibraries"
         :key="library._id"
       >
         <v-img height="100%" src="@/assets/library_background.jpeg">
@@ -16,9 +16,9 @@
                     {{ library.name }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
-                    <span>
+                    <!-- <span>
                       {{ library.owners.join("~") }}
-                    </span>
+                    </span> -->
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -30,9 +30,11 @@
                 fab
                 dark
                 color="#62000F"
-                @click="openLibrary(library)"
-                ><v-icon title="Open Library">mdi-open-in-new</v-icon></v-btn
+                @click="openLibrary(library._id)"
+                title="Open Library"
+                ><v-icon>mdi-open-in-new</v-icon></v-btn
               >
+
               <v-btn
                 class="mr-1"
                 x-small
@@ -40,7 +42,8 @@
                 dark
                 color="#62000F"
                 @click="open_LibraryDetails_Dialog(library._id)"
-                ><v-icon title="Edit Library">mdi-pencil</v-icon></v-btn
+                title="Edit Library"
+                ><v-icon>mdi-pencil</v-icon></v-btn
               >
               <v-btn
                 class="mr-1"
@@ -49,7 +52,8 @@
                 dark
                 color="#62000F"
                 @click="deleteLibrary(library._id)"
-                ><v-icon title="Delete Library">mdi-delete</v-icon></v-btn
+                title="Delete Library"
+                ><v-icon>mdi-delete</v-icon></v-btn
               >
             </v-col>
           </v-row>
@@ -77,11 +81,7 @@
       </v-col>
     </v-row>
 
-    <v-row justify="center">
-      <v-dialog v-model="show_LibraryDetails_Dialog" max-width="1000px">
-        <library-details-dialog />
-      </v-dialog>
-    </v-row>
+    <v-row justify="center"> </v-row>
   </v-container>
 </template>
 
@@ -90,22 +90,19 @@ import {
   getLibraries,
   deleteLibrariesLid,
 } from "@/services/api/libraries/index.js";
-import LibraryDetailsDialog from "@/components/LibraryDetailsDialog.vue";
 
 export default {
   name: "DisplayLibraries",
   props: ["id"],
   data: () => ({
     info: null,
+    user: {},
     loading: false,
   }),
-  components: {
-    LibraryDetailsDialog,
-  },
+  components: {},
   methods: {
-    openLibrary(library) {
-      this.$store.commit("setLibraryId", library._id);
-      this.$router.push("/libraries/" + library._id).catch(() => {});
+    openLibrary(lid) {
+      this.$router.push("/libraries/" + lid + "/books").catch(() => {});
     },
 
     open_InsertLibraryForm_Dialog() {
@@ -120,7 +117,12 @@ export default {
       if (!this.loading) {
         try {
           this.loading = true;
-          await deleteLibrariesLid(lid);
+          const user = this.$store.getters.getUser;
+          await deleteLibrariesLid(
+            user._id,
+            lid,
+            localStorage.getItem("accessToken")
+          );
         } catch (error) {
           this.$store.commit("setErrorMessage", error);
           this.$router.push("/error_page");
@@ -134,25 +136,27 @@ export default {
       }
     },
   },
-
   computed: {
-    show_LibraryDetails_Dialog: {
-      get: function () {
-        return this.$store.state.libraryDialog;
-      },
-      set: function (value) {
-        if (value) {
-          this.$store.commit("show_LibraryDetails_Dialog", null);
-        } else {
-          this.$store.commit("hide_LibraryDetails_Dialog");
-        }
-      },
-    }
+    handledLibraries() {
+      return this.$store.getters.getLibraries;
+    },
   },
-
   async mounted() {
     try {
-      const value = await getLibraries();
+      const user = this.$store.getters.getUser;
+      let value = await getLibraries(
+        user._id,
+        localStorage.getItem("accessToken")
+      );/*
+      value = value.map((v) => ({
+        ...v,
+        schema: {
+          ...v.schema,
+          resources: v.schema.resources.map(
+            (r) => `https://defacto-23.herokuapp.com${r}`
+          ),
+        },
+      }));*/
       this.$store.commit("setLibraries", value);
     } catch (error) {
       this.$store.commit("setErrorMessage", error);
