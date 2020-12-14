@@ -1,48 +1,34 @@
 import axios from 'axios';
 
 //import CONFIG from '@/config';
+import { createHeader } from "@/config"
 
 //const API_ROUTE = `${CONFIG.HOSTNAME}/libraries`;
-const API_ROUTE = "https://lib-hub.herokuapp.com/api/v1/libraries";
+const API_ROUTE = (uid, lid) => `https://defacto-23.herokuapp.com/api/users/${uid}/libraries/${lid}/books`;
 
-export async function getBooks(lid) {
-    //console.log("Api lid: "+lid);
-    const response = await axios.get(API_ROUTE + "/" + lid + "/books");
+export async function getBooks(uid, lid, token) {
+    const response = await axios.get(API_ROUTE(uid, lid), createHeader(token));
     return response.data;
 }
 
-export async function retrieveBookInfo(ISBN) {
-    const response = await axios.get("https://lib-hub.herokuapp.com/api/v1/isbn/" + ISBN);
+export async function postLibrariesLidBooks(uid, lid, body, token){
+    const response = await axios.post(API_ROUTE(uid, lid), body, createHeader(token));
     return response.data;
 }
 
-
-export function getISBN_from_image(image_path) {
-    let Quagga = require('quagga').default
-    Quagga.decodeSingle({
-            decoder: {
-                readers: ["code_128_reader", "code_39_reader", "code_39_vin_reader", "ean_reader", "ean_8_reader", "upc_reader", "upc_e_reader", "codabar_reader"], // List of active readers
-            },
-            locate: true, // try to locate the barcode in the image
-            numOfWorkers: 0,
-            src: image_path, // or 'data:image/jpg;base64,' + data
-        },
-        function(result) {
-            if (result.codeResult) {
-                this.$store.commit('setIsbnObatinedFromImage', result.codeResult.cod)
-            } else {
-                this.$store.commit('setIsbnObatinedFromImage', '')
-            }
-        }
-    );
-
+export async function patchLibrariesLidBook(uid, lid, bid, body, token){
+    await axios.patch(API_ROUTE(uid, lid) +"/"+ bid , body, createHeader(token));
 }
 
-export async function postLibrariesLidBooks(lid, body){
-    const response = await axios.post(API_ROUTE+"/"+lid+"/books", body);
-    return response.data;
+export async function deleteLibrariesLidBooksBid(uid, lid, bid, token) {
+    try{
+        await axios.delete(API_ROUTE(uid, lid) +"/"+ bid , createHeader(token));
+    }catch(error){
+        console.log(error.response);
+    }
+    
 }
 
-export async function deleteLibrariesLidBooksBid(lid, bid) {
-    await axios.delete(API_ROUTE+"/"+lid+"/books/"+bid);
+export async function postLibrariesLidBookPictures(uid, lid, bid, body, token){
+    await axios.post(API_ROUTE(uid, lid) +"/"+ bid +"/pictures", body, createHeader(token));
 }
