@@ -1,12 +1,12 @@
 <template>
-  <v-container>
+  <v-container v-if="handledUser">
     <v-row>
-      <v-menu bottom min-width="200px" rounded offset-y left >
+      <v-menu bottom min-width="200px" rounded offset-y left  :close-on-content-click='close' >
         <template v-slot:activator="{ on }">
           <v-btn icon x-large v-on="on">
             <v-avatar>
               <img
-                src="https://i.pinimg.com/564x/66/28/0b/66280bc785eca690ff854e7e61edb66b.jpg"
+                :src="handledUser.avatar || '/assets/user-default.jpg'"
                 alt="Tartaglia"
               />
             </v-avatar>
@@ -15,20 +15,16 @@
         <v-card>
           <v-list-item-content>
             <div class="mx-auto text-center">
-              <v-avatar>
-                <img
-                  src="https://i.pinimg.com/564x/66/28/0b/66280bc785eca690ff854e7e61edb66b.jpg"
-                  alt="Tartaglia"
-                />
-              </v-avatar>
-              <h3>{{ this.uid }}</h3>
-              <p class="caption mt-1">
-                {{ this.uid }}
+              <h3>{{ handledUser.name }} {{ handledUser.surname }}</h3>
+              <p class="caption mt-1 mx-2">
+                {{ handledUser.username }}
+                <br/>
+                {{ handledUser.email }}
               </p>
               <v-divider class="my-3"></v-divider>
               <v-btn depressed rounded text to="/user"> Edit Account </v-btn>
               <v-divider class="my-3"></v-divider>
-              <v-btn depressed rounded text @click="clearUID"> Disconnect </v-btn>
+              <v-btn depressed rounded text @click="clearUser"> Disconnect </v-btn>
             </div>
           </v-list-item-content>
         </v-card>
@@ -41,16 +37,25 @@
 export default {
   name: "UserMenu",
   data : () => ({
-    uid : "",
+    user: {},
+    close: false,
   }),
   methods:{
-    clearUID(){
-      this.$store.state.UserId = "";
-      this.$router.push("/");
+    clearUser(){
+      localStorage.removeItem("accessToken")
+      localStorage.removeItem("user")
+      this.$store.commit("clearStore")
+      this.$router.push("/")
+    },
+
+  },
+  computed:{
+    handledUser(){
+      return this.$store.getters.getUser;
     }
   },
   mounted(){
-    this.uid = this.$store.state.UserId;
+    this.user = this.$store.getters.getUser;
   }
 };
 </script>
