@@ -4,7 +4,15 @@
       <div class="d-flex justify-center">
         <!-- <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon> -->
 
-        <v-icon class="mr-2 my-3" @click="showDrawer" color="white">mdi-menu</v-icon>
+        <v-slide-x-reverse-transition mode="out-in">
+          <v-icon
+            :key="`icon-${drawer}`"
+            color="white"
+            class="mr-2 my-3"
+            @click="drawer = !drawer"
+            v-text="drawer ? 'mdi-close' : 'mdi-menu'"
+          ></v-icon>
+        </v-slide-x-reverse-transition>
 
         <v-img
           alt="Lib-hub Logo"
@@ -52,13 +60,6 @@
             <v-list-item-title>Libraries</v-list-item-title>
           </v-list-item>
 
-          <v-list-item @click="toTags">
-            <v-list-item-icon>
-              <v-icon>mdi-tag-multiple</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Tags</v-list-item-title>
-          </v-list-item>
-
           <v-list-item @click="toFriends">
             <v-list-item-icon>
               <v-icon>mdi-account-group</v-icon>
@@ -94,9 +95,6 @@ export default {
     },
     toLibraries() {
       this.$router.push("/libraries").catch(() => {});
-    },
-    toTags() {
-      this.$router.push("/tags").catch(() => {});
     },
     toFriends() {
       this.$router.push("/friends").catch(() => {});

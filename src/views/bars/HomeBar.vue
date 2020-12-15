@@ -13,7 +13,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn color="#62000F" elevation="0" tile @click="openLoginDialog">
+    <v-btn text tile @click="openLoginDialog">
       <span class="mr-2 button-white" >Login </span>
       <v-icon color="white">mdi-account-circle</v-icon>
     </v-btn>
