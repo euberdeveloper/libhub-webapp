@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createHeader } from "@/config";
 
-const API_ROUTE = (uid, lid, bid) => `https://defacto-23.herokuapp.com/api/user/${uid}/libraries/${lid}/books/${bid}/reviews`
+const API_ROUTE = (uid, lid, bid) => `https://lib-hub-api.herokuapp.com/api/user/${uid}/libraries/${lid}/books/${bid}/reviews`
 
 
 

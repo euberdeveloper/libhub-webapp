@@ -3,7 +3,7 @@ import { createHeader } from "@/config"
 
 //Manage requests 
 
-const API_REQUEST_ROUTE = (uid) => `https://defacto-23.herokuapp.com/api/users/${uid}/friends/friend-requests`
+const API_REQUEST_ROUTE = (uid) => `https://lib-hub-api.herokuapp.com/api/users/${uid}/friends/friend-requests`
 
 export async function getSentRequest(uid, token){
     const res = await axios.get(API_REQUEST_ROUTE(uid) + '/sent', createHeader(token))
@@ -27,8 +27,8 @@ export async function acceptRefuseRequest(uid, rid, body, token){
 
 //Manage friends
 
-const API_ROUTE_COL = (uid, f_username) => `https://defacto-23.herokuapp.com/api/users/${uid}/friends/${f_username}`;
-const API_ROUTE =  (uid) => `https://defacto-23.herokuapp.com/api/users/${uid}/friends`;
+const API_ROUTE_COL = (uid, f_username) => `https://lib-hub-api.herokuapp.com/api/users/${uid}/friends/${f_username}`;
+const API_ROUTE =  (uid) => `https://lib-hub-api.herokuapp.com/api/users/${uid}/friends`;
 
 export async function getFriends(uid, token){
     const res = await axios.get(API_ROUTE(uid), createHeader(token))
@@ -44,6 +44,6 @@ export async function  deleteFriend(uid, f_username, token){
 }
 
 export async function zaWarudo(token ){
-    const res =await axios.get("https://defacto-23.herokuapp.com/api/users/usernames", createHeader(token))
+    const res =await axios.get("https://lib-hub-api.herokuapp.com/api/users/usernames", createHeader(token))
     return res.data
 }

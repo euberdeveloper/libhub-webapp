@@ -4,7 +4,7 @@ import axios from 'axios';
 import { createHeader } from "@/config"
 
 //const API_ROUTE = `${CONFIG.HOSTNAME}/libraries`;
-const API_ROUTE = (uid, lid) => `https://defacto-23.herokuapp.com/api/users/${uid}/libraries/${lid}/schema/resources`;
+const API_ROUTE = (uid, lid) => `https://lib-hub-api.herokuapp.com/api/users/${uid}/libraries/${lid}/schema/resources`;
 
 export async function getResources(uid, lid) {
     const response = await axios.get(API_ROUTE(uid, lid));

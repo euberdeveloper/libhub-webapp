@@ -3,7 +3,7 @@ import { createHeader } from "@/config";
 
 
 
-const API_ROUTE = (uid) => `https://defacto-23.herokuapp.com/api/users/${uid}/`
+const API_ROUTE = (uid) => `https://lib-hub-api.herokuapp.com/api/users/${uid}/`
 
 
 export async function PatchUpdateUserProfile(uid, body, token) {

@@ -14,7 +14,7 @@ import axios from 'axios';
 import { createHeader } from "@/config"
 
 //const API_ROUTE = `${CONFIG.HOSTNAME}/libraries`;
-const API_ROUTE = (uid) => `https://defacto-23.herokuapp.com/api/users/${uid}/chats`;
+const API_ROUTE = (uid) => `https://lib-hub-api.herokuapp.com/api/users/${uid}/chats`;
 
 export async function getChatMessages(uid, cid ,token){
     const res = await axios.get(API_ROUTE(uid)+ "/"+ cid, createHeader(token));
