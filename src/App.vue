@@ -3,7 +3,7 @@
     
     <router-view name="bar"/>
 
-    <v-main class="fluid">
+    <v-main fluid>
       <router-view/>
     </v-main>
   </v-app>
