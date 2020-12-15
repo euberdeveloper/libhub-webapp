@@ -3,7 +3,7 @@ import Quagga from 'quagga';
 
 //import CONFIG from '@/config';
 //const API_ROUTE = `${CONFIG.HOSTNAME}/isbn`;
-const API_ROUTE = "https://lib-hub.herokuapp.com/api/v1/isbn/";
+const API_ROUTE = "https://defacto-23.herokuapp.com/api/isbn/";
 
 export async function retrieveBookInfo(ISBN) {
     const response = await axios.get(API_ROUTE + ISBN);
