@@ -145,7 +145,7 @@ export default {
       if (!this.loading) {
         try {
           this.loading = true;
-          console.log(this.username);
+          
           await PostPasswordRecoveryRequestWithUsername(this.username);
           this.$store.commit("hideLoginDialog");
           this.dialog = true;

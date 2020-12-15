@@ -597,7 +597,6 @@ export default {
 
           const formData = new FormData();
           const user = this.$store.getters.getUser;
-          console.log(this.$refs.form.$el["PictureImage"].files[0]);
           formData.append(
             "picture",
             this.$refs.form.$el["PictureImage"].files[0]
