@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const history = require('connect-history-api-fallback');
 
 const { PORT, DIST_PATH } = require('./config');
 const app = express();
@@ -35,6 +36,9 @@ app.use(morgan('dev'));
 logger.debug('bodyParser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+logger.debug('history fallback');
+app.use(history());
 
 logger.debug('express-static');
 app.use(express.static(DIST_PATH));
