@@ -1,12 +1,12 @@
 <template>
-  <v-container align-content-lg fluid>
-    <v-row class="central-align-style">
+  <v-container align-content-lg fluid class="ma-2">
+    <v-row class="d-flex justify-center">
       <v-col>
         <about-us />
       </v-col>
 
-      <v-col>
-        <v-card elevation-5 class="signup-form-style">
+      <v-col >
+        <v-card elevation-5 class="d-flex align-start mt-2 mr-5">
           <signup-form />
         </v-card>
       </v-col>
@@ -23,7 +23,7 @@
 <script>
 import AboutUs from "@/components/AboutUs.vue";
 import SignupForm from "@/components/SignupForm.vue";
-import LogInForm from "@/components/LogInForm.vue";
+import LogInForm from "@/components/dialogs/LogInForm.vue";
 
 export default {
   name: "Home",
